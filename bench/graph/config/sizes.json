@@ -1,0 +1,6 @@
+{
+  "S1": { "vertices": 1000, "edges": 5000, "hotsetRatio": 0.1, "scaleDefault": true },
+  "S2": { "vertices": 10000, "edges": 50000, "hotsetRatio": 0.1, "scaleDefault": true },
+  "S3": { "vertices": 50000, "edges": 200000, "hotsetRatio": 0.1, "scaleDefault": true },
+  "S4": { "vertices": 100000, "edges": 400000, "hotsetRatio": 0.08, "scaleDefault": false }
+}

@@ -1,0 +1,456 @@
+{
+  "suite": "graph",
+  "provider": "memory",
+  "timestamp": "2025-12-26T03:16:40.597Z",
+  "durationSeconds": 56.806,
+  "rows": [
+    {
+      "task": "V.property + has()",
+      "ops/s": 10,
+      "avg (ms)": "104.2",
+      "±%": 10,
+      "p99": "131.1",
+      "samples": 10
+    },
+    {
+      "task": "V.drop()",
+      "ops/s": 11,
+      "avg (ms)": "91.6",
+      "±%": 10,
+      "p99": "114.7",
+      "samples": 11
+    },
+    {
+      "task": "addV + drop",
+      "ops/s": 12,
+      "avg (ms)": "86.8",
+      "±%": 10,
+      "p99": "114.7",
+      "samples": 12
+    },
+    {
+      "task": "E.drop()",
+      "ops/s": 24,
+      "avg (ms)": "43.3",
+      "±%": 6,
+      "p99": "58.7",
+      "samples": 24
+    },
+    {
+      "task": "addE + drop",
+      "ops/s": 43,
+      "avg (ms)": "23.9",
+      "±%": 5,
+      "p99": "36.2",
+      "samples": 42
+    },
+    {
+      "task": "V.and()",
+      "ops/s": 69,
+      "avg (ms)": "14.8",
+      "±%": 4,
+      "p99": "23.8",
+      "samples": 68
+    },
+    {
+      "task": "V.or()",
+      "ops/s": 69,
+      "avg (ms)": "14.8",
+      "±%": 4,
+      "p99": "21.5",
+      "samples": 68
+    },
+    {
+      "task": "V.filter()",
+      "ops/s": 72,
+      "avg (ms)": "14.5",
+      "±%": 5,
+      "p99": "24.8",
+      "samples": 69
+    },
+    {
+      "task": "V.not()",
+      "ops/s": 75,
+      "avg (ms)": "13.6",
+      "±%": 4,
+      "p99": "21.7",
+      "samples": 74
+    },
+    {
+      "task": "V.outE()",
+      "ops/s": 81,
+      "avg (ms)": "12.8",
+      "±%": 5,
+      "p99": "21.7",
+      "samples": 79
+    },
+    {
+      "task": "V.outE().id()",
+      "ops/s": 87,
+      "avg (ms)": "11.8",
+      "±%": 4,
+      "p99": "18.5",
+      "samples": 85
+    },
+    {
+      "task": "E.where()",
+      "ops/s": 334,
+      "avg (ms)": "3.2",
+      "±%": 3,
+      "p99": "6.8",
+      "samples": 317
+    },
+    {
+      "task": "E.filter()",
+      "ops/s": 346,
+      "avg (ms)": "3.0",
+      "±%": 3,
+      "p99": "5.7",
+      "samples": 333
+    },
+    {
+      "task": "E.tail()",
+      "ops/s": 964,
+      "avg (ms)": "1.1",
+      "±%": 2,
+      "p99": "2.0",
+      "samples": 933
+    },
+    {
+      "task": "values.and()",
+      "ops/s": 1197,
+      "avg (ms)": "0.9",
+      "±%": 2,
+      "p99": "2.1",
+      "samples": 1131
+    },
+    {
+      "task": "values.or()",
+      "ops/s": 1226,
+      "avg (ms)": "0.9",
+      "±%": 2,
+      "p99": "1.9",
+      "samples": 1175
+    },
+    {
+      "task": "V.tail()",
+      "ops/s": 1246,
+      "avg (ms)": "0.8",
+      "±%": 2,
+      "p99": "1.8",
+      "samples": 1202
+    },
+    {
+      "task": "values.count()",
+      "ops/s": 1256,
+      "avg (ms)": "0.8",
+      "±%": 2,
+      "p99": "1.9",
+      "samples": 1210
+    },
+    {
+      "task": "values.filter()",
+      "ops/s": 1257,
+      "avg (ms)": "0.8",
+      "±%": 2,
+      "p99": "1.8",
+      "samples": 1205
+    },
+    {
+      "task": "values.tail()",
+      "ops/s": 1265,
+      "avg (ms)": "0.8",
+      "±%": 2,
+      "p99": "1.8",
+      "samples": 1220
+    },
+    {
+      "task": "V.count()",
+      "ops/s": 1282,
+      "avg (ms)": "0.8",
+      "±%": 1,
+      "p99": "1.7",
+      "samples": 1236
+    },
+    {
+      "task": "values.limit()",
+      "ops/s": 1618,
+      "avg (ms)": "0.6",
+      "±%": 1,
+      "p99": "1.6",
+      "samples": 1557
+    },
+    {
+      "task": "V.limit()",
+      "ops/s": 1640,
+      "avg (ms)": "0.6",
+      "±%": 1,
+      "p99": "1.6",
+      "samples": 1572
+    },
+    {
+      "task": "addE",
+      "ops/s": 1734,
+      "avg (ms)": "0.7",
+      "±%": 5,
+      "p99": "2.4",
+      "samples": 1412
+    },
+    {
+      "task": "E.limit()",
+      "ops/s": 1832,
+      "avg (ms)": "0.6",
+      "±%": 2,
+      "p99": "1.5",
+      "samples": 1745
+    },
+    {
+      "task": "values.where()",
+      "ops/s": 2261,
+      "avg (ms)": "0.5",
+      "±%": 2,
+      "p99": "1.6",
+      "samples": 2127
+    },
+    {
+      "task": "values.not()",
+      "ops/s": 2333,
+      "avg (ms)": "0.5",
+      "±%": 2,
+      "p99": "1.5",
+      "samples": 2217
+    },
+    {
+      "task": "as + select",
+      "ops/s": 3439,
+      "avg (ms)": "0.3",
+      "±%": 3,
+      "p99": "2.1",
+      "samples": 3078
+    },
+    {
+      "task": "V.where()",
+      "ops/s": 3564,
+      "avg (ms)": "0.3",
+      "±%": 3,
+      "p99": "2.0",
+      "samples": 3221
+    },
+    {
+      "task": "V.path()",
+      "ops/s": 3659,
+      "avg (ms)": "0.3",
+      "±%": 3,
+      "p99": "1.8",
+      "samples": 3294
+    },
+    {
+      "task": "V.property()",
+      "ops/s": 3708,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.5",
+      "samples": 3427
+    },
+    {
+      "task": "V.valueMap()",
+      "ops/s": 3871,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 3607
+    },
+    {
+      "task": "V.bothE()",
+      "ops/s": 3882,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.5",
+      "samples": 3580
+    },
+    {
+      "task": "V.inE()",
+      "ops/s": 3930,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.5",
+      "samples": 3627
+    },
+    {
+      "task": "V.properties(\"name\")",
+      "ops/s": 3939,
+      "avg (ms)": "0.3",
+      "±%": 3,
+      "p99": "1.5",
+      "samples": 3569
+    },
+    {
+      "task": "V.has(label)",
+      "ops/s": 3992,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.6",
+      "samples": 3675
+    },
+    {
+      "task": "V.label()",
+      "ops/s": 4002,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 3679
+    },
+    {
+      "task": "V.out()",
+      "ops/s": 4003,
+      "avg (ms)": "0.3",
+      "±%": 3,
+      "p99": "1.5",
+      "samples": 3661
+    },
+    {
+      "task": "V.in()",
+      "ops/s": 4020,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.5",
+      "samples": 3731
+    },
+    {
+      "task": "V.has(prop)",
+      "ops/s": 4134,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 3837
+    },
+    {
+      "task": "V.id()",
+      "ops/s": 4229,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.3",
+      "samples": 3932
+    },
+    {
+      "task": "E.property()",
+      "ops/s": 4240,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 3911
+    },
+    {
+      "task": "E.inV()",
+      "ops/s": 4383,
+      "avg (ms)": "0.3",
+      "±%": 3,
+      "p99": "1.5",
+      "samples": 3960
+    },
+    {
+      "task": "E.otherV()",
+      "ops/s": 4386,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 3998
+    },
+    {
+      "task": "E.valueMap()",
+      "ops/s": 4402,
+      "avg (ms)": "0.2",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 4063
+    },
+    {
+      "task": "E.properties()",
+      "ops/s": 4420,
+      "avg (ms)": "0.2",
+      "±%": 2,
+      "p99": "1.3",
+      "samples": 4029
+    },
+    {
+      "task": "E.has(label)",
+      "ops/s": 4423,
+      "avg (ms)": "0.3",
+      "±%": 3,
+      "p99": "1.5",
+      "samples": 3971
+    },
+    {
+      "task": "E.bothV()",
+      "ops/s": 4453,
+      "avg (ms)": "0.2",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 4063
+    },
+    {
+      "task": "E.outV()",
+      "ops/s": 4458,
+      "avg (ms)": "0.2",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 4026
+    },
+    {
+      "task": "E.has(prop)",
+      "ops/s": 4494,
+      "avg (ms)": "0.2",
+      "±%": 2,
+      "p99": "1.5",
+      "samples": 4075
+    },
+    {
+      "task": "E.id()",
+      "ops/s": 4501,
+      "avg (ms)": "0.2",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 4106
+    },
+    {
+      "task": "E.label()",
+      "ops/s": 4635,
+      "avg (ms)": "0.2",
+      "±%": 2,
+      "p99": "1.4",
+      "samples": 4274
+    },
+    {
+      "task": "E.inV().id()",
+      "ops/s": 8174,
+      "avg (ms)": "0.1",
+      "±%": 4,
+      "p99": "0.3",
+      "samples": 6925
+    },
+    {
+      "task": "E.outV().id()",
+      "ops/s": 8548,
+      "avg (ms)": "0.1",
+      "±%": 3,
+      "p99": "0.3",
+      "samples": 7421
+    },
+    {
+      "task": "addV",
+      "ops/s": 10470,
+      "avg (ms)": "0.1",
+      "±%": 7,
+      "p99": "0.3",
+      "samples": 8389
+    },
+    {
+      "task": "V.out().id()",
+      "ops/s": 14318,
+      "avg (ms)": "0.1",
+      "±%": 5,
+      "p99": "0.2",
+      "samples": 11734
+    }
+  ]
+}

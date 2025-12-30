@@ -1,0 +1,56 @@
+{
+  "suite": "provider",
+  "provider": "nats",
+  "timestamp": "2025-12-26T03:10:54.310Z",
+  "durationSeconds": 6.119,
+  "rows": [
+    {
+      "task": "kv.keys",
+      "ops/s": 23,
+      "avg (ms)": "47.2",
+      "±%": 8,
+      "p99": "65.4",
+      "samples": 22
+    },
+    {
+      "task": "kv.update",
+      "ops/s": 2569,
+      "avg (ms)": "0.4",
+      "±%": 2,
+      "p99": "1.1",
+      "samples": 2239
+    },
+    {
+      "task": "kv.put",
+      "ops/s": 3106,
+      "avg (ms)": "0.4",
+      "±%": 2,
+      "p99": "0.9",
+      "samples": 2824
+    },
+    {
+      "task": "kv.delete",
+      "ops/s": 3220,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "1.0",
+      "samples": 2903
+    },
+    {
+      "task": "kv.create",
+      "ops/s": 3315,
+      "avg (ms)": "0.3",
+      "±%": 2,
+      "p99": "0.7",
+      "samples": 3075
+    },
+    {
+      "task": "kv.get",
+      "ops/s": 3546,
+      "avg (ms)": "0.3",
+      "±%": 1,
+      "p99": "0.8",
+      "samples": 3224
+    }
+  ]
+}

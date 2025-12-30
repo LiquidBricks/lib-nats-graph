@@ -1,0 +1,16 @@
+{
+  "defaultDataset": { "size": "S2", "topology": "uniform" },
+  "defaults": { "samples": 500, "warmup": 50 },
+  "workloads": {
+    "point_read_vertex_valueMap": { "sampleSet": "randomVertexIds" },
+    "point_read_edge_valueMap": { "sampleSet": "randomEdgeIds" },
+    "neighbor_expand_1hop_ids": { "sampleSet": "randomVertexIds", "hubSampleSet": "hubVertexIds" },
+    "adjacency_edges_then_vertices": { "sampleSet": "randomVertexIds" },
+    "filter_by_label_then_limit": { "label": "person", "limit": 25, "selectivity": 0.25 },
+    "filter_by_prop_then_limit": { "key": "group", "value": 0, "limit": 25, "selectivity": 0.1 },
+    "boolean_filter_combo": { "key": "group", "value": 1 },
+    "tail_recent_vertices": { "limit": 20 },
+    "count_vertices_by_label": { "label": "person" },
+    "write_add_vertex_and_property": { "cleanup": true }
+  }
+}

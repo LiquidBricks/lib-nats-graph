@@ -1,0 +1,16 @@
+{
+  "name": "benchmark",
+  "version": "1.0.0",
+  "main": "run.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "clear && node run.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tinybench": "^5.0.1"
+  }
+}

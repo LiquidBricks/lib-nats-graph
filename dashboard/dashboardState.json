@@ -1,0 +1,917 @@
+{
+  "layout": {
+    "nodes": [
+      {
+        "id": "graph",
+        "type": "io",
+        "position": {
+          "x": -609.6962689516079,
+          "y": 185.09844393335214
+        },
+        "data": {
+          "label": "graph",
+          "typeIn": "—",
+          "typeOut": "Graph"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -609.6962689516079,
+          "y": 185.09844393335214
+        },
+        "dragging": false
+      },
+      {
+        "id": "addV",
+        "type": "io",
+        "position": {
+          "x": -324.11878767401856,
+          "y": -177.44183962051488
+        },
+        "data": {
+          "label": "addV",
+          "typeIn": "Graph",
+          "typeOut": "Vertex"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -324.11878767401856,
+          "y": -177.44183962051488
+        },
+        "dragging": false
+      },
+      {
+        "id": "addE",
+        "type": "io",
+        "position": {
+          "x": -354.524969533282,
+          "y": 501.225750602008
+        },
+        "data": {
+          "label": "addE",
+          "typeIn": "Graph",
+          "typeOut": "Edge"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -354.524969533282,
+          "y": 501.225750602008
+        },
+        "dragging": false
+      },
+      {
+        "id": "V",
+        "type": "io",
+        "position": {
+          "x": -325.57791666564924,
+          "y": -104.10545157694625
+        },
+        "data": {
+          "label": "V",
+          "typeIn": "Graph",
+          "typeOut": "Vertex"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -325.57791666564924,
+          "y": -104.10545157694625
+        },
+        "dragging": false
+      },
+      {
+        "id": "E",
+        "type": "io",
+        "position": {
+          "x": -355.37712549237403,
+          "y": 433.6317067525336
+        },
+        "data": {
+          "label": "E",
+          "typeIn": "Graph",
+          "typeOut": "Edge"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -355.37712549237403,
+          "y": 433.6317067525336
+        },
+        "dragging": false
+      },
+      {
+        "id": "property",
+        "type": "io",
+        "position": {
+          "x": -138.72959627989883,
+          "y": 234.44754060486758
+        },
+        "data": {
+          "label": "property",
+          "typeIn": "Vertex|Edge",
+          "typeOut": "Vertex|Edge"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -138.72959627989883,
+          "y": 234.44754060486758
+        },
+        "dragging": false
+      },
+      {
+        "id": "id",
+        "type": "terminal",
+        "position": {
+          "x": 932.0586587377994,
+          "y": 6.407626946512039
+        },
+        "data": {
+          "label": "id",
+          "typeIn": "Vertex|Edge",
+          "typeOut": "String"
+        },
+        "width": 185,
+        "height": 45,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 932.0586587377994,
+          "y": 6.407626946512039
+        },
+        "dragging": false
+      },
+      {
+        "id": "label",
+        "type": "terminal",
+        "position": {
+          "x": 940.9688847632045,
+          "y": 92.70007514627082
+        },
+        "data": {
+          "label": "label",
+          "typeIn": "Vertex|Edge",
+          "typeOut": "String"
+        },
+        "width": 185,
+        "height": 45,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 940.9688847632045,
+          "y": 92.70007514627082
+        },
+        "dragging": false
+      },
+      {
+        "id": "drop",
+        "type": "terminal",
+        "position": {
+          "x": 946.5027165995842,
+          "y": 181.4323541273268
+        },
+        "data": {
+          "label": "drop",
+          "typeIn": "Vertex|Edge",
+          "typeOut": "—"
+        },
+        "width": 185,
+        "height": 45,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 946.5027165995842,
+          "y": 181.4323541273268
+        },
+        "dragging": false
+      },
+      {
+        "id": "properties",
+        "type": "io",
+        "position": {
+          "x": 956.0441713820785,
+          "y": 259.29272796471
+        },
+        "data": {
+          "label": "properties",
+          "typeIn": "Vertex|Edge",
+          "typeOut": "Value"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 956.0441713820785,
+          "y": 259.29272796471
+        },
+        "dragging": false
+      },
+      {
+        "id": "valueMap",
+        "type": "terminal",
+        "position": {
+          "x": 957.4773540760019,
+          "y": 356.8226296899998
+        },
+        "data": {
+          "label": "valueMap",
+          "typeIn": "Vertex|Edge",
+          "typeOut": "Map"
+        },
+        "width": 185,
+        "height": 45,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 957.4773540760019,
+          "y": 356.8226296899998
+        },
+        "dragging": false
+      },
+      {
+        "id": "Vertex",
+        "type": "resource",
+        "position": {
+          "x": 668.8311630611395,
+          "y": -166.51504413016835
+        },
+        "data": {
+          "label": "Vertex",
+          "kind": "resource",
+          "resourceType": "Vertex",
+          "typeIn": "Vertex",
+          "typeOut": "Vertex"
+        },
+        "width": 161,
+        "height": 45,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 668.8311630611395,
+          "y": -166.51504413016835
+        },
+        "dragging": false
+      },
+      {
+        "id": "Edge",
+        "type": "resource",
+        "position": {
+          "x": 637.4501693572172,
+          "y": 430.6584774463701
+        },
+        "data": {
+          "label": "Edge",
+          "kind": "resource",
+          "resourceType": "Edge",
+          "typeIn": "Edge",
+          "typeOut": "Edge"
+        },
+        "width": 161,
+        "height": 45,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 637.4501693572172,
+          "y": 430.6584774463701
+        },
+        "dragging": false
+      },
+      {
+        "id": "outE",
+        "type": "io",
+        "position": {
+          "x": 293.49142240932144,
+          "y": 336.7901112570956
+        },
+        "data": {
+          "label": "outE",
+          "typeIn": "Vertex",
+          "typeOut": "Edge"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 293.49142240932144,
+          "y": 336.7901112570956
+        },
+        "dragging": false
+      },
+      {
+        "id": "out",
+        "type": "io",
+        "position": {
+          "x": 298.9911330024331,
+          "y": -302.1255953417555
+        },
+        "data": {
+          "label": "out",
+          "typeIn": "Vertex",
+          "typeOut": "Vertex"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 298.9911330024331,
+          "y": -302.1255953417555
+        },
+        "dragging": false
+      },
+      {
+        "id": "in",
+        "type": "io",
+        "position": {
+          "x": 298.295843852207,
+          "y": -375.96789081331696
+        },
+        "data": {
+          "label": "in",
+          "typeIn": "Vertex",
+          "typeOut": "Vertex"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 298.295843852207,
+          "y": -375.96789081331696
+        },
+        "dragging": false
+      },
+      {
+        "id": "inE",
+        "type": "io",
+        "position": {
+          "x": 290.4484194850924,
+          "y": 260.87709756933367
+        },
+        "data": {
+          "label": "inE",
+          "typeIn": "Vertex",
+          "typeOut": "Edge"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 290.4484194850924,
+          "y": 260.87709756933367
+        },
+        "dragging": false
+      },
+      {
+        "id": "outV",
+        "type": "io",
+        "position": {
+          "x": 277.01817202107395,
+          "y": -21.946490978176143
+        },
+        "data": {
+          "label": "outV",
+          "typeIn": "Edge",
+          "typeOut": "Vertex"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "dragging": false,
+        "positionAbsolute": {
+          "x": 277.01817202107395,
+          "y": -21.946490978176143
+        }
+      },
+      {
+        "id": "inV",
+        "type": "io",
+        "position": {
+          "x": 276.89013485851694,
+          "y": -86.00303303831598
+        },
+        "data": {
+          "label": "inV",
+          "typeIn": "Edge",
+          "typeOut": "Vertex"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 276.89013485851694,
+          "y": -86.00303303831598
+        },
+        "dragging": false
+      },
+      {
+        "id": "bothV",
+        "type": "io",
+        "position": {
+          "x": 281.48480453606976,
+          "y": 142.36353778806006
+        },
+        "data": {
+          "label": "bothV",
+          "typeIn": "Edge",
+          "typeOut": "Vertex"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 281.48480453606976,
+          "y": 142.36353778806006
+        },
+        "dragging": false
+      },
+      {
+        "id": "otherV",
+        "type": "io",
+        "position": {
+          "x": 282.7686443848674,
+          "y": 63.9656020876709
+        },
+        "data": {
+          "label": "otherV",
+          "typeIn": "Edge",
+          "typeOut": "Vertex"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 282.7686443848674,
+          "y": 63.9656020876709
+        },
+        "dragging": false
+      },
+      {
+        "id": "has",
+        "type": "io",
+        "position": {
+          "x": -136.41619046891196,
+          "y": 113.32403278625208
+        },
+        "data": {
+          "label": "has",
+          "typeIn": "Vertex|Edge",
+          "typeOut": "Vertex|Edge"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": false,
+        "dragging": false,
+        "positionAbsolute": {
+          "x": -136.41619046891196,
+          "y": 113.32403278625208
+        }
+      },
+      {
+        "id": "bothE",
+        "type": "io",
+        "position": {
+          "x": 302.643216080402,
+          "y": 393.74078726968173
+        },
+        "data": {
+          "label": "bothE",
+          "typeIn": "Vertex",
+          "typeOut": "Edge"
+        },
+        "width": 164,
+        "height": 47,
+        "selected": true,
+        "positionAbsolute": {
+          "x": 302.643216080402,
+          "y": 393.74078726968173
+        },
+        "dragging": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "graph-addV",
+        "source": "graph",
+        "target": "addV",
+        "data": {}
+      },
+      {
+        "id": "graph-addE",
+        "source": "graph",
+        "target": "addE",
+        "data": {}
+      },
+      {
+        "id": "graph-V",
+        "source": "graph",
+        "target": "V",
+        "data": {}
+      },
+      {
+        "id": "graph-E",
+        "source": "graph",
+        "target": "E",
+        "data": {}
+      },
+      {
+        "id": "property-V",
+        "source": "property",
+        "target": "V",
+        "data": {},
+        "selected": false
+      },
+      {
+        "id": "property-E",
+        "source": "property",
+        "target": "E",
+        "data": {}
+      },
+      {
+        "id": "V-resource",
+        "source": "V",
+        "target": "resource",
+        "data": {}
+      },
+      {
+        "id": "resource-id",
+        "source": "resource",
+        "target": "id",
+        "data": {}
+      },
+      {
+        "id": "resource-label",
+        "source": "resource",
+        "target": "label",
+        "data": {}
+      },
+      {
+        "id": "resource-properties",
+        "source": "resource",
+        "target": "properties",
+        "data": {}
+      },
+      {
+        "id": "resource-drop",
+        "source": "resource",
+        "target": "drop",
+        "data": {}
+      },
+      {
+        "id": "addV-resource",
+        "source": "addV",
+        "target": "resource",
+        "data": {}
+      },
+      {
+        "id": "V-property",
+        "source": "V",
+        "target": "property",
+        "data": {}
+      },
+      {
+        "id": "E-property",
+        "source": "E",
+        "target": "property",
+        "data": {},
+        "selected": false
+      },
+      {
+        "id": "E-resourceEdge",
+        "source": "E",
+        "target": "resourceEdge",
+        "data": {}
+      },
+      {
+        "id": "addE-resourceEdge",
+        "source": "addE",
+        "target": "resourceEdge",
+        "data": {}
+      },
+      {
+        "id": "resourceEdge-id",
+        "source": "resourceEdge",
+        "target": "id",
+        "data": {}
+      },
+      {
+        "id": "resourceEdge-label",
+        "source": "resourceEdge",
+        "target": "label",
+        "data": {}
+      },
+      {
+        "id": "resourceEdge-properties",
+        "source": "resourceEdge",
+        "target": "properties",
+        "data": {}
+      },
+      {
+        "id": "resourceEdge-drop",
+        "source": "resourceEdge",
+        "target": "drop",
+        "data": {}
+      },
+      {
+        "id": "resource-valueMap",
+        "source": "resource",
+        "target": "valueMap",
+        "data": {}
+      },
+      {
+        "id": "resourceEdge-valueMap",
+        "source": "resourceEdge",
+        "target": "valueMap",
+        "data": {}
+      },
+      {
+        "id": "V-Vertex",
+        "source": "V",
+        "target": "Vertex",
+        "data": {}
+      },
+      {
+        "id": "addV-Vertex",
+        "source": "addV",
+        "target": "Vertex",
+        "data": {}
+      },
+      {
+        "id": "E-Edge",
+        "source": "E",
+        "target": "Edge",
+        "data": {}
+      },
+      {
+        "id": "addE-Edge",
+        "source": "addE",
+        "target": "Edge",
+        "data": {}
+      },
+      {
+        "id": "Vertex-id",
+        "source": "Vertex",
+        "target": "id",
+        "data": {}
+      },
+      {
+        "id": "Vertex-label",
+        "source": "Vertex",
+        "target": "label",
+        "data": {}
+      },
+      {
+        "id": "Vertex-properties",
+        "source": "Vertex",
+        "target": "properties",
+        "data": {}
+      },
+      {
+        "id": "Vertex-drop",
+        "source": "Vertex",
+        "target": "drop",
+        "data": {}
+      },
+      {
+        "id": "Vertex-valueMap",
+        "source": "Vertex",
+        "target": "valueMap",
+        "data": {}
+      },
+      {
+        "id": "Edge-id",
+        "source": "Edge",
+        "target": "id",
+        "data": {}
+      },
+      {
+        "id": "Edge-label",
+        "source": "Edge",
+        "target": "label",
+        "data": {}
+      },
+      {
+        "id": "Edge-properties",
+        "source": "Edge",
+        "target": "properties",
+        "data": {}
+      },
+      {
+        "id": "Edge-drop",
+        "source": "Edge",
+        "target": "drop",
+        "data": {}
+      },
+      {
+        "id": "Edge-valueMap",
+        "source": "Edge",
+        "target": "valueMap",
+        "data": {}
+      },
+      {
+        "id": "graph-drop",
+        "source": "graph",
+        "target": "drop",
+        "data": {}
+      },
+      {
+        "id": "V-outE",
+        "source": "V",
+        "target": "outE",
+        "data": {}
+      },
+      {
+        "id": "outE-Edge",
+        "source": "outE",
+        "target": "Edge",
+        "data": {}
+      },
+      {
+        "id": "V-out",
+        "source": "V",
+        "target": "out",
+        "data": {}
+      },
+      {
+        "id": "out-Vertex",
+        "source": "out",
+        "target": "Vertex",
+        "data": {}
+      },
+      {
+        "id": "V-in",
+        "source": "V",
+        "target": "in",
+        "data": {}
+      },
+      {
+        "id": "V-inE",
+        "source": "V",
+        "target": "inE",
+        "data": {}
+      },
+      {
+        "id": "in-Vertex",
+        "source": "in",
+        "target": "Vertex",
+        "data": {}
+      },
+      {
+        "id": "inE-Edge",
+        "source": "inE",
+        "target": "Edge",
+        "data": {}
+      },
+      {
+        "id": "E-outV",
+        "source": "E",
+        "target": "outV",
+        "data": {}
+      },
+      {
+        "id": "E-inV",
+        "source": "E",
+        "target": "inV",
+        "data": {}
+      },
+      {
+        "id": "outV-Vertex",
+        "source": "outV",
+        "target": "Vertex",
+        "data": {}
+      },
+      {
+        "id": "inV-Vertex",
+        "source": "inV",
+        "target": "Vertex",
+        "data": {}
+      },
+      {
+        "id": "E-bothV",
+        "source": "E",
+        "target": "bothV",
+        "data": {}
+      },
+      {
+        "id": "E-otherV",
+        "source": "E",
+        "target": "otherV",
+        "data": {},
+        "selected": false
+      },
+      {
+        "id": "bothV-Vertex",
+        "source": "bothV",
+        "target": "Vertex",
+        "data": {}
+      },
+      {
+        "id": "otherV-Vertex",
+        "source": "otherV",
+        "target": "Vertex",
+        "data": {}
+      },
+      {
+        "id": "V-has",
+        "source": "V",
+        "target": "has",
+        "data": {}
+      },
+      {
+        "id": "E-has",
+        "source": "E",
+        "target": "has",
+        "selected": false,
+        "data": {}
+      },
+      {
+        "id": "has-V",
+        "source": "has",
+        "target": "V",
+        "data": {}
+      },
+      {
+        "id": "has-E",
+        "source": "has",
+        "target": "E",
+        "data": {}
+      },
+      {
+        "id": "V-bothE",
+        "source": "V",
+        "target": "bothE"
+      },
+      {
+        "id": "bothE-Edge",
+        "source": "bothE",
+        "target": "Edge"
+      }
+    ],
+    "viewport": {
+      "x": 54.272727272727366,
+      "y": -11.353213665315536,
+      "zoom": 1.3827446438911406
+    }
+  },
+  "homeGraph": {
+    "nodes": [],
+    "edges": []
+  },
+  "history": [
+    {
+      "code": "return graph().V().outE(\"knows\").id()",
+      "output": "[\n  \"01K56HYFK3WNFR30ZS9M4CPDC6\"\n]",
+      "ts": 1757935687561
+    },
+    {
+      "code": "return graph().E().id()",
+      "output": "[\n  \"01K56HYFK3WNFR30ZS9M4CPDC6\"\n]",
+      "ts": 1757935684761
+    },
+    {
+      "code": "return graph().addE('knows','01K56HRCT2NZ9HW4GNSWPJ6V2R','01K56HRK6W48SG2BVXSBHH4NQ3')",
+      "output": "[\n  {}\n]",
+      "ts": 1757935517291
+    },
+    {
+      "code": "return graph().V().id()",
+      "output": "[\n  \"01K56HRCT2NZ9HW4GNSWPJ6V2R\",\n  \"01K56HRK6W48SG2BVXSBHH4NQ3\"\n]",
+      "ts": 1757935497387
+    },
+    {
+      "code": "return graph().addV('person').property('name','joe')",
+      "output": "[\n  {}\n]",
+      "ts": 1757935324391
+    },
+    {
+      "code": "return graph().addV('person').property('name','sue')",
+      "output": "[\n  {}\n]",
+      "ts": 1757935317843
+    },
+    {
+      "code": "return graph().drop()",
+      "output": "[\n  \"ok\"\n]",
+      "ts": 1757935144817
+    },
+    {
+      "code": "const abc = await graph().V()\nconsole.log({abc})\nreturn abc",
+      "output": "[\n  {},\n  {}\n]",
+      "ts": 1757935121408
+    },
+    {
+      "code": "const abc = await graph().V().outE(\"knows\")\nconsole.log({abc})\nreturn abc",
+      "output": "[]",
+      "ts": 1757935110821
+    },
+    {
+      "code": "return graph().V().outE().id()",
+      "output": "[]",
+      "ts": 1757934963394
+    },
+    {
+      "code": "return graph().addE('knows','01K56EPGP8RVBD994MK2B9A6PW','01K56EPQ0QXXSSZAGCQPTXA054')",
+      "output": "[\n  {}\n]",
+      "ts": 1757932239341
+    }
+  ]
+}

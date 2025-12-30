@@ -1,0 +1,1 @@
+export const NATS_IP_ADDRESS = process.env.NATS_IP_ADDRESS

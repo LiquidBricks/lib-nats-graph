@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Benchmark Charts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #0b1221;
+      --panel: rgba(255, 255, 255, 0.06);
+      --muted: #9fb2d0;
+      --text: #e5ecff;
+      --accent: #52f6be;
+      --accent-2: #7fb0ff;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", "JetBrains Mono", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: radial-gradient(120% 120% at 20% 20%, #1e2a47 0%, #0c1528 45%, #050915 100%);
+      padding: 32px 18px 48px;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px 22px 32px;
+      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+    }
+
+    header {
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.01em;
+    }
+
+    header p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+      max-width: 720px;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      padding: 4px;
+      border-radius: 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+    }
+
+    .tab-button {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 8px 12px;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+    }
+
+    .tab-button:hover {
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .tab-button[aria-selected="true"] {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .controls {
+      margin: 18px 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .control-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .control {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .control-group .control {
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .control.compact {
+      padding: 8px 10px;
+    }
+
+    .control label {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+    }
+
+    select,
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      background: #0f1a33;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 160ms ease, border-color 160ms ease;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.10);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .status {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .status strong {
+      color: var(--text);
+    }
+
+    .chart-wrap {
+      background: linear-gradient(145deg, #0f172a, #0b1221);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    canvas {
+      width: 100%;
+      height: 480px;
+    }
+
+    #wideChart {
+      height: 720px;
+    }
+
+    .table {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      text-align: left;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.02);
+      font-weight: 500;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .empty {
+      text-align: center;
+      padding: 18px 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+      }
+
+      .header-right {
+        align-items: flex-start;
+      }
+
+      canvas {
+        height: 360px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <h1>Benchmark Charts</h1>
+        <p>
+          <strong>Trend view</strong> plots benchmark marks produced by <code>bench/run.js</code> (loaded from
+          <code>bench/marks/index.json</code>).
+          <strong>Wide bench</strong> plots a single JSONL run produced by <code>bench/graph/run.js</code>
+          (loaded from <code>/bench-results/&lt;timestamp&gt;/&lt;suite&gt;.jsonl</code>).
+        </p>
+      </div>
+      <div class="header-right">
+        <div class="tabs" role="tablist" aria-label="Benchmark views">
+          <button class="tab-button" id="tab-trend" data-tab="trend" role="tab" aria-selected="true"
+            aria-controls="trend-panel">Trend view</button>
+          <button class="tab-button" id="tab-wide" data-tab="wide" role="tab" aria-selected="false"
+            aria-controls="wide-panel">Wide bench</button>
+        </div>
+        <span class="badge" id="view-badge">trend view</span>
+      </div>
+    </header>
+
+    <section id="trend-panel" role="tabpanel" aria-labelledby="tab-trend">
+      <section class="controls">
+        <div class="control-group compact">
+          <div class="control compact">
+            <label for="suite">Bench suite</label>
+            <select id="suite"></select>
+          </div>
+          <div class="control compact">
+            <label for="provider">Provider</label>
+            <select id="provider"></select>
+          </div>
+          <div class="control compact">
+            <label for="metric">Metric</label>
+            <select id="metric">
+              <option value="ops/s">ops/s (higher is better)</option>
+              <option value="ops/s Δv">ops/s Δv (pct change vs previous run)</option>
+              <option value="avg (ms)">avg (ms)</option>
+              <option value="p99">p99 (ms)</option>
+              <option value="samples">samples</option>
+            </select>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="control">
+            <label for="startDate">Start date</label>
+            <input id="startDate" type="datetime-local" />
+          </div>
+          <div class="control">
+            <label for="endDate">End date</label>
+            <input id="endDate" type="datetime-local" />
+          </div>
+        </div>
+        <div class="control">
+          <label for="sortDirection">Sort direction</label>
+          <select id="sortDirection">
+            <option value="asc">lowest → highest</option>
+            <option value="desc">highest → lowest</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="metricMin">Min value (inclusive)</label>
+          <input id="metricMin" type="number" placeholder="−∞" />
+        </div>
+        <div class="control">
+          <label for="metricMax">Max value (inclusive)</label>
+          <input id="metricMax" type="number" placeholder="∞" />
+        </div>
+        <div class="control">
+          <label for="taskFilter">Task filter (contains)</label>
+          <input id="taskFilter" placeholder="e.g. V.out or kv." />
+        </div>
+        <div class="control">
+          <label for="seriesCap">Max series</label>
+          <input id="seriesCap" type="number" min="1" max="60" value="15" />
+        </div>
+      </section>
+
+      <div class="status">
+        <span id="status-text" class="muted">Loading marks…</span>
+        <span id="run-count" class="muted"></span>
+      </div>
+
+      <div class="chart-wrap">
+        <canvas id="marksChart" aria-label="Benchmark chart" role="img"></canvas>
+      </div>
+
+      <div class="table" id="latest-table"></div>
+    </section>
+
+    <section id="wide-panel" role="tabpanel" aria-labelledby="tab-wide" hidden>
+      <section class="controls">
+        <div class="control-group compact">
+          <div class="control compact">
+            <label for="widePath">Run JSONL path</label>
+            <input id="widePath" placeholder="/bench-results/<timestamp>/micro.jsonl" />
+          </div>
+          <div class="control compact">
+            <label for="wideDataset">Dataset</label>
+            <select id="wideDataset"></select>
+          </div>
+          <div class="control compact">
+            <label for="wideMetric">Metric</label>
+            <select id="wideMetric">
+              <option value="opsPerSec">ops/s</option>
+              <option value="avgMs">avg (ms)</option>
+              <option value="p50Ms">p50 (ms)</option>
+              <option value="p95Ms">p95 (ms)</option>
+              <option value="p99Ms">p99 (ms)</option>
+              <option value="stdevMs">stdev (ms)</option>
+              <option value="durationMs">case duration (ms)</option>
+              <option value="errorCount">errors</option>
+              <option value="samples">samples</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control">
+            <label for="wideCaseFilter">Case filter (contains)</label>
+            <input id="wideCaseFilter" placeholder="e.g. V.out or neighbor_expand" />
+          </div>
+          <div class="control">
+            <label for="wideSort">Sort direction</label>
+            <select id="wideSort">
+              <option value="desc">highest → lowest</option>
+              <option value="asc">lowest → highest</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="wideCap">Max cases</label>
+            <input id="wideCap" type="number" min="1" max="200" value="60" />
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control">
+            <label for="wideFile">Or load local JSONL</label>
+            <input id="wideFile" type="file" accept=".jsonl,.ndjson,.txt,.json" />
+          </div>
+          <div class="control">
+            <label>&nbsp;</label>
+            <button id="wideLoad">Load</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="status">
+        <span id="wide-status-text" class="muted">Paste a JSONL path and click Load.</span>
+        <span id="wide-meta" class="muted"></span>
+      </div>
+
+      <div class="chart-wrap">
+        <canvas id="wideChart" aria-label="Wide bench chart" role="img"></canvas>
+      </div>
+
+      <div class="table" id="wide-table"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script type="module">
+    const viewBadge = document.getElementById('view-badge')
+    const trendPanel = document.getElementById('trend-panel')
+    const widePanel = document.getElementById('wide-panel')
+    const tabButtons = Array.from(document.querySelectorAll('.tab-button'))
+
+    let marksChartRef = null
+    let wideBenchState = null
+    let wideBenchInitialized = false
+
+    function setActiveTab(tabName) {
+      const isWide = tabName === 'wide'
+      trendPanel.hidden = isWide
+      widePanel.hidden = !isWide
+      tabButtons.forEach((btn) => {
+        const selected = btn.dataset.tab === tabName
+        btn.setAttribute('aria-selected', selected ? 'true' : 'false')
+      })
+      viewBadge.textContent = isWide ? 'wide bench' : 'trend view'
+
+      if (isWide && !wideBenchInitialized) {
+        initWideBenchTab()
+        wideBenchInitialized = true
+      }
+
+      if (isWide) {
+        setTimeout(() => wideBenchState?.chart?.resize?.(), 0)
+      } else {
+        setTimeout(() => marksChartRef?.resize?.(), 0)
+      }
+    }
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener('click', () => setActiveTab(btn.dataset.tab))
+    })
+    setActiveTab('trend')
+
+    const statusEl = document.getElementById('status-text')
+    const runCountEl = document.getElementById('run-count')
+    const suiteSelect = document.getElementById('suite')
+    const providerSelect = document.getElementById('provider')
+    const metricSelect = document.getElementById('metric')
+    const taskFilterInput = document.getElementById('taskFilter')
+    const seriesCapInput = document.getElementById('seriesCap')
+    const metricMinInput = document.getElementById('metricMin')
+    const metricMaxInput = document.getElementById('metricMax')
+    const sortSelect = document.getElementById('sortDirection')
+    const startDateInput = document.getElementById('startDate')
+    const endDateInput = document.getElementById('endDate')
+    const tableWrap = document.getElementById('latest-table')
+    const ctx = document.getElementById('marksChart').getContext('2d')
+
+    const palette = Array.from({ length: 28 }, (_, i) => `hsl(${(i * 47) % 360} 70% 60%)`)
+
+    const state = {
+      entries: [],
+      chart: null,
+    }
+
+    const defaults = {
+      suite: 'graph',
+      provider: 'nats',
+      metric: 'ops/s',
+      direction: 'asc',
+    }
+
+    const metricLabels = {
+      'ops/s': 'ops/s',
+      'ops/s Δv': 'ops/s Δv',
+      'avg (ms)': 'average (ms)',
+      'p99': 'p99 (ms)',
+      'samples': 'samples',
+    }
+
+    async function loadIndex() {
+      const res = await fetch('./marks/index.json')
+      if (!res.ok) {
+        throw new Error('marks/index.json not found. Run the benchmarks to generate it.')
+      }
+      const data = await res.json()
+      const entries = (data.entries || data.runs || []).filter(Boolean)
+      entries.sort((a, b) => new Date(a.timestamp || a.runId) - new Date(b.timestamp || b.runId))
+      return entries
+    }
+
+    function unique(list) {
+      return Array.from(new Set(list.filter(Boolean)))
+    }
+
+    function formatTs(iso) {
+      const d = new Date(iso)
+      if (Number.isNaN(d.getTime())) return iso || 'n/a'
+      const pad = (n) => String(n).padStart(2, '0')
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`
+    }
+
+    function parseDateFromInput(value) {
+      if (!value) return null
+      const parsed = new Date(value)
+      return Number.isNaN(parsed.getTime()) ? null : parsed
+    }
+
+    function getEntryTime(entry) {
+      const raw = entry.timestamp || entry.runId
+      if (!raw) return null
+      const parsed = new Date(raw)
+      return Number.isNaN(parsed.getTime()) ? null : parsed.getTime()
+    }
+
+    function lastValue(arr) {
+      for (let i = arr.length - 1; i >= 0; i -= 1) {
+        if (arr[i] != null) return arr[i]
+      }
+      return null
+    }
+
+    function renderFilters(entries) {
+      const suites = unique(entries.map(e => e.suite))
+      const providers = unique(entries.map(e => e.provider))
+
+      suiteSelect.innerHTML = suites.map(v => `<option value="${v}">${v}</option>`).join('')
+      providerSelect.innerHTML = providers.map(v => `<option value="${v}">${v}</option>`).join('')
+      if (suites.includes(defaults.suite)) {
+        suiteSelect.value = defaults.suite
+      } else if (suites.length) {
+        suiteSelect.value = suites[0]
+      }
+      if (providers.includes(defaults.provider)) {
+        providerSelect.value = defaults.provider
+      } else if (providers.length) {
+        providerSelect.value = providers[0]
+      }
+      metricSelect.value = defaults.metric
+      sortSelect.value = defaults.direction
+    }
+
+    function buildSeries({ entries, suite, provider, metric, taskFilter, cap, minValue, maxValue, direction, startDate, endDate }) {
+      const startMs = startDate ? startDate.getTime() : null
+      const endMs = endDate ? endDate.getTime() : null
+
+      const filtered = entries.filter(entry => {
+        if (suite && entry.suite !== suite) return false
+        if (provider && entry.provider !== provider) return false
+        if (startMs !== null || endMs !== null) {
+          const entryTime = getEntryTime(entry)
+          if (entryTime == null) return false
+          if (startMs !== null && entryTime < startMs) return false
+          if (endMs !== null && entryTime > endMs) return false
+        }
+        return true
+      })
+      if (!filtered.length) {
+        return { labels: [], datasets: [], series: {}, filtered }
+      }
+
+      filtered.sort((a, b) => new Date(a.timestamp || a.runId) - new Date(b.timestamp || b.runId))
+      const labels = filtered.map(e => `${formatTs(e.timestamp)} · ${e.runId}`)
+
+      const series = {}
+      const useMin = Number.isFinite(minValue) && minValue !== Number.NEGATIVE_INFINITY
+      const useMax = Number.isFinite(maxValue) && maxValue !== Number.POSITIVE_INFINITY
+      const isDeltaMetric = metric === 'ops/s Δv'
+      const sourceMetric = isDeltaMetric ? 'ops/s' : metric
+      const previousOps = isDeltaMetric ? new Map() : null
+
+      filtered.forEach((entry, idx) => {
+        (entry.rows || []).forEach(row => {
+          const task = row.task || 'unknown'
+          if (!series[task]) {
+            series[task] = new Array(filtered.length).fill(null)
+          }
+          const raw = row[sourceMetric]
+          const value = Number(raw)
+          if (!Number.isFinite(value)) return
+
+          let computed = value
+          if (isDeltaMetric) {
+            const prevValue = previousOps.get(task)
+            previousOps.set(task, value)
+            if (prevValue == null) {
+              computed = 0
+            } else if (!Number.isFinite(prevValue) || prevValue === 0) {
+              computed = null
+            } else {
+              computed = Math.round(((value / prevValue) - 1) * 100)
+            }
+          }
+          if (computed == null) return
+          if (!Number.isFinite(computed)) return
+          if (useMin && computed < minValue) return
+          if (useMax && computed > maxValue) return
+          series[task][idx] = computed
+        })
+      })
+
+      const taskIds = Object.keys(series).filter(t => !taskFilter || t.toLowerCase().includes(taskFilter.toLowerCase()))
+      const dirFactor = direction === 'desc' ? -1 : 1
+      taskIds.sort((a, b) => {
+        const aVal = Number.isFinite(lastValue(series[a])) ? lastValue(series[a]) : Number.NEGATIVE_INFINITY
+        const bVal = Number.isFinite(lastValue(series[b])) ? lastValue(series[b]) : Number.NEGATIVE_INFINITY
+        const diff = aVal - bVal
+        return dirFactor * (Number.isNaN(diff) ? 0 : diff)
+      })
+      const selectedTasks = taskIds.slice(0, cap || taskIds.length)
+
+      const limitedSeries = {}
+      const datasets = selectedTasks.map((task, i) => {
+        limitedSeries[task] = series[task]
+        return {
+          label: task,
+          data: series[task],
+          borderColor: palette[i % palette.length],
+          backgroundColor: palette[i % palette.length].replace('hsl', 'hsla').replace(')', ',0.28)'),
+          tension: 0.25,
+          borderWidth: 2,
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          spanGaps: true,
+        }
+      })
+
+      return { labels, datasets, series: limitedSeries, filtered }
+    }
+
+    function renderTable({ series, metric, direction }) {
+      const tasks = Object.keys(series || {})
+      if (!tasks.length) {
+        tableWrap.innerHTML = '<div class="empty">No task data found for this selection.</div>'
+        return
+      }
+
+      const rows = tasks.map(task => {
+        const vals = series[task]
+        return { task, latest: lastValue(vals), history: vals }
+      })
+
+      const dirFactor = direction === 'desc' ? -1 : 1
+      rows.sort((a, b) => {
+        const aVal = Number.isFinite(a.latest) ? a.latest : Number.NEGATIVE_INFINITY
+        const bVal = Number.isFinite(b.latest) ? b.latest : Number.NEGATIVE_INFINITY
+        return dirFactor * (aVal - bVal)
+      })
+
+      const head = `<thead><tr><th>Task</th><th>Latest ${metricLabels[metric] || metric}</th><th>History</th></tr></thead>`
+      const body = rows.map(r => {
+        const history = (r.history || []).map(v => (v == null ? '–' : v)).join(', ')
+        const val = r.latest == null ? '–' : r.latest
+        return `<tr><td>${r.task}</td><td>${val}</td><td class="muted">${history}</td></tr>`
+      }).join('')
+      tableWrap.innerHTML = `<table>${head}<tbody>${body}</tbody></table>`
+    }
+
+    const parseLimitInput = (element, fallback) => {
+      const raw = element.value.trim()
+      if (!raw) return fallback
+      const parsed = Number(raw)
+      return Number.isFinite(parsed) ? parsed : fallback
+    }
+
+    function updateChart() {
+      const suite = suiteSelect.value
+      const provider = providerSelect.value
+      const metric = metricSelect.value
+      const taskFilter = taskFilterInput.value.trim()
+      const cap = Number(seriesCapInput.value) || undefined
+      const direction = sortSelect.value
+
+      const minValue = parseLimitInput(metricMinInput, Number.NEGATIVE_INFINITY)
+      const maxValue = parseLimitInput(metricMaxInput, Number.POSITIVE_INFINITY)
+      const startDate = parseDateFromInput(startDateInput.value)
+      const endDate = parseDateFromInput(endDateInput.value)
+
+      const { labels, datasets, series, filtered } = buildSeries({
+        entries: state.entries,
+        suite,
+        provider,
+        metric,
+        taskFilter,
+        cap,
+        minValue,
+        maxValue,
+        direction,
+        startDate,
+        endDate,
+      })
+
+      if (!labels.length || !datasets.length) {
+        statusEl.textContent = 'No data for this combination. Run more benchmarks or relax filters.'
+        if (state.chart) {
+          state.chart.data.labels = []
+          state.chart.data.datasets = []
+          state.chart.update()
+        }
+        renderTable({ series: {}, metric, direction })
+        runCountEl.textContent = ''
+        return
+      }
+
+      const config = {
+        type: 'line',
+        data: { labels, datasets },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#d7def5' },
+              title: { display: true, text: metricLabels[metric] || metric, color: '#d7def5' },
+            },
+            x: {
+              grid: { color: 'rgba(255,255,255,0.03)' },
+              ticks: { color: '#d7def5', maxRotation: 25, autoSkip: true },
+            },
+          },
+          plugins: {
+            legend: {
+              display: true,
+              labels: { color: '#d7def5', boxWidth: 14, boxHeight: 14, usePointStyle: true },
+            },
+            tooltip: {
+              callbacks: {
+                title: (items) => labels[items[0].dataIndex],
+                label: (ctx) => `${ctx.dataset.label}: ${ctx.formattedValue}`,
+              },
+            },
+          },
+        },
+      }
+
+      if (!state.chart) {
+        state.chart = new Chart(ctx, config)
+      } else {
+        state.chart.data.labels = labels
+        state.chart.data.datasets = datasets
+        state.chart.options = config.options
+        state.chart.update()
+      }
+      marksChartRef = state.chart
+
+      renderTable({ series, metric, direction })
+      statusEl.textContent = `${datasets.length} task${datasets.length === 1 ? '' : 's'} · metric ${metricLabels[metric] || metric}`
+      runCountEl.textContent = `${filtered.length} run${filtered.length === 1 ? '' : 's'}`
+    }
+
+    function attachListeners() {
+      [suiteSelect, providerSelect, metricSelect, taskFilterInput, seriesCapInput, metricMinInput, metricMaxInput, sortSelect, startDateInput, endDateInput].forEach(el => {
+        el.addEventListener('input', () => updateChart())
+        el.addEventListener('change', () => updateChart())
+      })
+    }
+
+    async function init() {
+      try {
+        state.entries = await loadIndex()
+        if (!state.entries.length) {
+          statusEl.textContent = 'No benchmark data found in bench/marks.'
+          return
+        }
+        renderFilters(state.entries)
+        attachListeners()
+        updateChart()
+      } catch (err) {
+        console.error(err)
+        statusEl.textContent = err.message || 'Failed to load benchmark data.'
+      }
+    }
+
+    function initWideBenchTab() {
+      const wideStatusEl = document.getElementById('wide-status-text')
+      const wideMetaEl = document.getElementById('wide-meta')
+      const widePathInput = document.getElementById('widePath')
+      const wideDatasetSelect = document.getElementById('wideDataset')
+      const wideMetricSelect = document.getElementById('wideMetric')
+      const wideSortSelect = document.getElementById('wideSort')
+      const wideCapInput = document.getElementById('wideCap')
+      const wideFilterInput = document.getElementById('wideCaseFilter')
+      const wideFileInput = document.getElementById('wideFile')
+      const wideLoadBtn = document.getElementById('wideLoad')
+      const wideTableWrap = document.getElementById('wide-table')
+      const wideCanvas = document.getElementById('wideChart')
+      const wideCtx = wideCanvas.getContext('2d')
+
+      const metricLabels = {
+        opsPerSec: 'ops/s',
+        avgMs: 'avg (ms)',
+        p50Ms: 'p50 (ms)',
+        p95Ms: 'p95 (ms)',
+        p99Ms: 'p99 (ms)',
+        stdevMs: 'stdev (ms)',
+        durationMs: 'case duration (ms)',
+        errorCount: 'errors',
+        samples: 'samples',
+      }
+
+      const defaults = {
+        path: '/bench-results/2025-12-18T05-34-22-431Z/micro.jsonl',
+        metric: 'p99Ms',
+        sort: 'desc',
+        cap: 60,
+      }
+
+      const escapeHtml = (value) => String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;')
+
+      const formatWideValue = (value, metricKey) => {
+        const num = Number(value)
+        if (!Number.isFinite(num)) return '–'
+        if (metricKey === 'opsPerSec') return num.toFixed(0)
+        if (metricKey === 'samples' || metricKey === 'errorCount') return String(Math.round(num))
+        if (metricKey === 'durationMs') return num.toFixed(0)
+        return num.toFixed(2)
+      }
+
+      const parseJsonl = (text) => {
+        const rows = []
+        let errorLines = 0
+        for (const line of String(text).split(/\r?\n/)) {
+          const trimmed = line.trim()
+          if (!trimmed) continue
+          try {
+            rows.push(JSON.parse(trimmed))
+          } catch {
+            errorLines += 1
+          }
+        }
+        return { rows, errorLines }
+      }
+
+      const deriveMetaUrl = (jsonlUrl) => {
+        const clean = String(jsonlUrl).split('?')[0].split('#')[0]
+        const idx = clean.lastIndexOf('/')
+        if (idx === -1) return null
+        return `${clean.slice(0, idx)}/meta.json`
+      }
+
+      const setMetaText = ({ meta, rows, datasetSelection, datasetIds }) => {
+        const bits = []
+        if (meta?.timestamp) bits.push(formatTs(meta.timestamp))
+        if (meta?.gitSha) bits.push(String(meta.gitSha).slice(0, 7))
+        if (datasetSelection === 'all' && datasetIds.length > 1) {
+          bits.push(`${datasetIds.length} datasets`)
+        } else {
+          const dataset = rows[0]?.dataset
+          if (dataset?.id) bits.push(dataset.id)
+          if (dataset?.topology && dataset?.sizeLabel) bits.push(`${dataset.topology}/${dataset.sizeLabel}`)
+          if (dataset?.vertices != null && dataset?.edges != null) bits.push(`${dataset.vertices}V/${dataset.edges}E`)
+          if (dataset?.seed != null) bits.push(`seed ${dataset.seed}`)
+        }
+        wideMetaEl.textContent = bits.join(' · ')
+      }
+
+      const populateDatasetSelect = (rows) => {
+        const datasetIds = unique(rows.map(r => r?.dataset?.id)).sort()
+        if (!datasetIds.length) {
+          wideDatasetSelect.innerHTML = '<option value="all">all</option>'
+          wideDatasetSelect.disabled = true
+          return { datasetIds: [], selected: 'all' }
+        }
+
+        wideDatasetSelect.disabled = false
+        if (datasetIds.length === 1) {
+          const id = datasetIds[0]
+          wideDatasetSelect.innerHTML = `<option value="${escapeHtml(id)}">${escapeHtml(id)}</option>`
+          wideDatasetSelect.value = id
+          return { datasetIds, selected: id }
+        }
+
+        wideDatasetSelect.innerHTML = `<option value="all">all</option>${datasetIds.map(id => `<option value="${escapeHtml(id)}">${escapeHtml(id)}</option>`).join('')}`
+        wideDatasetSelect.value = 'all'
+        return { datasetIds, selected: 'all' }
+      }
+
+      const renderWideTable = (items) => {
+        if (!items.length) {
+          wideTableWrap.innerHTML = '<div class="empty">No cases for this selection.</div>'
+          return
+        }
+        const head = `
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>ops/s</th>
+              <th>avg</th>
+              <th>p50</th>
+              <th>p95</th>
+              <th>p99</th>
+              <th>errors</th>
+            </tr>
+          </thead>
+        `
+        const body = items.map(({ row }) => {
+          const m = row.metrics || {}
+          return `
+            <tr>
+              <td>${escapeHtml(row.case?.name || 'unknown')}</td>
+              <td>${formatWideValue(m.opsPerSec, 'opsPerSec')}</td>
+              <td>${formatWideValue(m.avgMs, 'avgMs')}</td>
+              <td>${formatWideValue(m.p50Ms, 'p50Ms')}</td>
+              <td>${formatWideValue(m.p95Ms, 'p95Ms')}</td>
+              <td>${formatWideValue(m.p99Ms, 'p99Ms')}</td>
+              <td>${formatWideValue(m.errorCount, 'errorCount')}</td>
+            </tr>
+          `
+        }).join('')
+        wideTableWrap.innerHTML = `<table>${head}<tbody>${body}</tbody></table>`
+      }
+
+      const renderWide = () => {
+        const rows = wideBenchState?.rows || []
+        if (!rows.length) {
+          wideStatusEl.textContent = 'No wide bench data loaded yet.'
+          wideMetaEl.textContent = ''
+          wideTableWrap.innerHTML = '<div class="empty">Load a JSONL run to chart it.</div>'
+          if (wideBenchState?.chart) {
+            wideBenchState.chart.data.labels = []
+            wideBenchState.chart.data.datasets = []
+            wideBenchState.chart.update()
+          }
+          return
+        }
+
+        const datasetIds = unique(rows.map(r => r?.dataset?.id)).sort()
+        const datasetSelection = wideDatasetSelect.disabled ? 'all' : wideDatasetSelect.value
+
+        const filteredRows = (datasetSelection && datasetSelection !== 'all')
+          ? rows.filter(r => r?.dataset?.id === datasetSelection)
+          : rows
+
+        const metricKey = wideMetricSelect.value
+        const sortDir = wideSortSelect.value
+        const cap = Math.max(1, Math.min(200, Number(wideCapInput.value) || defaults.cap))
+        const filter = wideFilterInput.value.trim().toLowerCase()
+
+        const items = filteredRows
+          .map((row) => {
+            const raw = metricKey === 'samples'
+              ? row?.metrics?.samples
+              : row?.metrics?.[metricKey]
+            return {
+              row,
+              name: row?.case?.name || 'unknown',
+              value: Number(raw),
+            }
+          })
+          .filter((x) => x.name && (!filter || x.name.toLowerCase().includes(filter)))
+          .filter((x) => Number.isFinite(x.value))
+
+        items.sort((a, b) => sortDir === 'asc' ? a.value - b.value : b.value - a.value)
+        const limited = items.slice(0, cap)
+
+        const labels = limited.map(x => x.name)
+        const data = limited.map(x => x.value)
+
+        const height = Math.max(480, (labels.length * 18) + 140)
+        wideCanvas.style.height = `${height}px`
+
+        const label = metricLabels[metricKey] || metricKey
+        const chartConfig = {
+          type: 'bar',
+          data: {
+            labels,
+            datasets: [{
+              label,
+              data,
+              borderWidth: 1,
+              borderColor: 'rgba(82, 246, 190, 1)',
+              backgroundColor: 'rgba(82, 246, 190, 0.28)',
+            }],
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: false,
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: { color: 'rgba(255,255,255,0.05)' },
+                ticks: { color: '#d7def5' },
+                title: { display: true, text: label, color: '#d7def5' },
+              },
+              y: {
+                grid: { color: 'rgba(255,255,255,0.03)' },
+                ticks: { color: '#d7def5', autoSkip: false },
+              },
+            },
+            plugins: {
+              legend: {
+                display: false,
+              },
+              tooltip: {
+                callbacks: {
+                  title: (items) => items[0]?.label,
+                  label: (ctx) => `${label}: ${ctx.formattedValue}`,
+                },
+              },
+            },
+          },
+        }
+
+        if (!wideBenchState.chart) {
+          wideBenchState.chart = new Chart(wideCtx, chartConfig)
+        } else {
+          wideBenchState.chart.data.labels = labels
+          wideBenchState.chart.data.datasets = chartConfig.data.datasets
+          wideBenchState.chart.options = chartConfig.options
+          wideBenchState.chart.update()
+        }
+
+        const parseErr = wideBenchState?.errorLines || 0
+        wideStatusEl.textContent = `${labels.length} case${labels.length === 1 ? '' : 's'} · metric ${label}${parseErr ? ` · ${parseErr} parse error${parseErr === 1 ? '' : 's'}` : ''}`
+        setMetaText({ meta: wideBenchState.meta, rows: filteredRows, datasetSelection, datasetIds })
+        renderWideTable(limited)
+      }
+
+      const setWideState = ({ rows, meta, errorLines }) => {
+        wideBenchState.rows = rows
+        wideBenchState.meta = meta
+        wideBenchState.errorLines = errorLines || 0
+        populateDatasetSelect(rows)
+        renderWide()
+      }
+
+      const loadFromUrl = async (url) => {
+        if (!url) {
+          wideStatusEl.textContent = 'Enter a JSONL path first.'
+          return
+        }
+        wideStatusEl.textContent = `Loading ${url}...`
+        const res = await fetch(url)
+        if (!res.ok) {
+          throw new Error(`Failed to load ${url} (${res.status})`)
+        }
+        const text = await res.text()
+        const { rows, errorLines } = parseJsonl(text)
+
+        let meta = null
+        const metaUrl = deriveMetaUrl(url)
+        if (metaUrl) {
+          const metaRes = await fetch(metaUrl).catch(() => null)
+          if (metaRes?.ok) {
+            meta = await metaRes.json().catch(() => null)
+          }
+        }
+
+        localStorage.setItem('wideBenchPath', url)
+        setWideState({ rows, meta, errorLines })
+      }
+
+      const loadFromFile = async (file) => {
+        if (!file) return
+        wideStatusEl.textContent = `Loading ${file.name}...`
+        const text = await file.text()
+        const { rows, errorLines } = parseJsonl(text)
+        setWideState({ rows, meta: null, errorLines })
+      }
+
+      const loadWide = async () => {
+        const file = wideFileInput.files?.[0]
+        if (file) {
+          await loadFromFile(file)
+          return
+        }
+        await loadFromUrl(widePathInput.value.trim())
+      }
+
+      wideBenchState = { rows: [], meta: null, chart: null, errorLines: 0 }
+
+      widePathInput.value = localStorage.getItem('wideBenchPath') || defaults.path
+      wideMetricSelect.value = localStorage.getItem('wideBenchMetric') || defaults.metric
+      wideSortSelect.value = localStorage.getItem('wideBenchSort') || defaults.sort
+      wideCapInput.value = localStorage.getItem('wideBenchCap') || String(defaults.cap)
+
+      wideDatasetSelect.innerHTML = '<option value="all">all</option>'
+      wideDatasetSelect.disabled = true
+
+      wideLoadBtn.addEventListener('click', () => loadWide().catch((err) => {
+        console.error(err)
+        wideStatusEl.textContent = err.message || 'Failed to load wide bench data.'
+      }))
+      widePathInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') wideLoadBtn.click()
+      })
+      wideFileInput.addEventListener('change', () => wideLoadBtn.click())
+
+      wideMetricSelect.addEventListener('change', () => {
+        localStorage.setItem('wideBenchMetric', wideMetricSelect.value)
+        renderWide()
+      })
+      wideSortSelect.addEventListener('change', () => {
+        localStorage.setItem('wideBenchSort', wideSortSelect.value)
+        renderWide()
+      })
+      wideCapInput.addEventListener('change', () => {
+        localStorage.setItem('wideBenchCap', wideCapInput.value)
+        renderWide()
+      })
+      wideFilterInput.addEventListener('input', () => renderWide())
+      wideDatasetSelect.addEventListener('change', () => renderWide())
+
+      // Auto-load the saved/default path for convenience.
+      if (widePathInput.value.trim()) {
+        wideLoadBtn.click()
+      }
+    }
+
+    init()
+  </script>
+</body>
+
+</html>
