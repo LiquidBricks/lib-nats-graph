@@ -57,3 +57,6 @@ npm test
 3. Tag a version (`git tag v0.1.0`) so consumers pin to a specific release when installing via git URLs.
 
 When you are ready to publish to the npm registry, run `npm publish` from this directory.
+
+
+// dont forget where it all began: http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43287.pdf

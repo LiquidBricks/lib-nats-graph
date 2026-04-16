@@ -1,7 +1,7 @@
 {
-  "name": "lib-nats-graph",
+  "name": "@liquid-bricks/lib-nats-graph",
   "version": "0.1.0",
-  "description": "Composable graph traversal helpers backed by NATS JetStream key-value buckets.",
+  "description": "Composable graph traversal helpers  backed by NATS JetStream key-value buckets.",
   "type": "module",
   "main": "./index.js",
   "exports": {
@@ -17,8 +17,8 @@
     "prepublishOnly": "node scripts/embed-build-meta.js"
   },
   "dependencies": {
-    "@liquid-bricks/lib-nats-context": "github:LiquidBricks/lib-nats-context#6b5b9da0b56e094055e548639ab3b3928596cc18",
-    "@liquid-bricks/lib-diagnostics": "github:LiquidBricks/lib-diagnostics#cef4c2fe2e2793d49b7e189ce7e25c41c8e6090a",
+    "@liquid-bricks/lib-nats-context": "github:LiquidBricks/lib-nats-context#345a6a5d748e253bee39e3dd1ca33719a35f9ad3",
+    "@liquid-bricks/lib-diagnostics": "github:LiquidBricks/lib-diagnostics#61b706dfa029f0682faa97a2836685a84cd45809",
     "@nats-io/jetstream": "^3.0.2",
     "@nats-io/kv": "^3.0.2",
     "@nats-io/transport-node": "^3.0.2",

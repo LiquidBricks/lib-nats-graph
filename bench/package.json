@@ -1,5 +1,5 @@
 {
-  "name": "benchmark",
+  "name": "@liquid-bricks/benchmark",
   "version": "1.0.0",
   "main": "run.js",
   "scripts": {

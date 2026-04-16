@@ -1,5 +1,5 @@
 {
-  "name": "graph-dashboard-next",
+  "name": "@liquid-bricks/graph-dashboard-next",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -11,10 +11,10 @@
   "dependencies": {
     "@liquid-bricks/shared-providers": "github:LiquidBricks/shared-providers#2a6940490b514c08dbd33b1947b87b2466bba343",
     "next": "^14.2.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "reactflow": "^11.10.5",
-    "react-simple-code-editor": "^0.13.1",
+    "react-simple-code-editor": "^0.14.1",
     "prismjs": "^1.29.0"
   }
 }
