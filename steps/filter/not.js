@@ -1,10 +1,10 @@
+import { NOT_INVALID_PREDICATE } from '@liquid-bricks/lib-diagnostics/codes'
 import {
   operationName,
   operationNameKey,
   operationResultType,
   operationResultTypeKey,
   operationStreamWrapperKey,
-  Errors,
 } from '../types.js'
 import { evaluatePredicate } from './predicateUtils.js'
 
@@ -16,7 +16,7 @@ const createNotStep = ({ resultType, startProp }) => ({
     const [predicate] = args
     diagnostics?.require(
       typeof predicate === 'function',
-      Errors.NOT_INVALID_PREDICATE,
+      NOT_INVALID_PREDICATE,
       'not(traversal) requires a predicate function.',
       { predicateType: typeof predicate }
     )

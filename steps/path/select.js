@@ -1,3 +1,4 @@
+import { SELECT_INVALID_LABEL, SELECT_LABEL_MISSING } from '@liquid-bricks/lib-diagnostics/codes'
 import {
   operationName,
   operationNameKey,
@@ -5,13 +6,12 @@ import {
   operationResultTypeKey,
   operationStreamWrapperKey,
   operationUsesTraverserKey,
-  Errors,
 } from '../types.js'
 
 const normalizeLabel = (label, idx, diagnostics) => {
   diagnostics?.require(
     typeof label === 'string' && label.length > 0,
-    Errors.SELECT_INVALID_LABEL,
+    SELECT_INVALID_LABEL,
     'select(label) requires non-empty string labels',
     { label, index: idx }
   )
@@ -49,7 +49,7 @@ export const select = {
 
     diagnostics?.require(
       requestedLabels.length > 0,
-      Errors.SELECT_INVALID_LABEL,
+      SELECT_INVALID_LABEL,
       'select(label) requires at least one label argument',
       { labels: requestedLabels }
     )
@@ -61,7 +61,7 @@ export const select = {
         const selections = requestedLabels.map((label) => {
           diagnostics?.require(
             bindings.has(label),
-            Errors.SELECT_LABEL_MISSING,
+            SELECT_LABEL_MISSING,
             `select('${label}') requires a previously bound label`,
             { label, available: Array.from(bindings.keys()) }
           )

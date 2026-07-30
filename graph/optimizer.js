@@ -1,4 +1,5 @@
-import { operationName, operationNameKey, operationResultTypeKey, Errors } from "../steps/types.js"
+import { INVALID_OPERATION } from '@liquid-bricks/lib-diagnostics/codes'
+import { operationName, operationNameKey, operationResultTypeKey } from "../steps/types.js"
 import { nextAvailableOperationsMap } from "../steps/outputTypeMappings.js"
 import { Graph } from "../steps/root/Graph.js"
 import { _vHasLabel } from "../steps/optimized/_vHasLabel.js"
@@ -17,7 +18,7 @@ export function optimizeOpsChain(originalOperationsChain, { diagnostics }) {
     const operation = nextAvailableOperationsMap.get(previousResultType).get(prop)
     diagnostics.invariant(
       !!operation,
-      Errors.INVALID_OPERATION,
+      INVALID_OPERATION,
       `Operation ${prop}(${args.join()}) Not Allowed.`,
       { operation, prop, args, operationsChain, operationsChainCursor, previousResultType }
     )

@@ -1,3 +1,4 @@
+import { WHERE_INVALID_PREDICATE } from '@liquid-bricks/lib-diagnostics/codes'
 import {
   operationName,
   operationNameKey,
@@ -6,7 +7,6 @@ import {
   operationStreamWrapperKey,
   operationUsesTraverserKey,
   operationAppendsToPathKey,
-  Errors,
 } from '../types.js'
 import { evaluatePredicate } from './predicateUtils.js'
 
@@ -43,7 +43,7 @@ const createWhereStep = ({ resultType, startProp }) => ({
     const [predicate] = args
     diagnostics?.require(
       typeof predicate === 'function',
-      Errors.WHERE_INVALID_PREDICATE,
+      WHERE_INVALID_PREDICATE,
       'where(predicate) requires a predicate function.',
       { predicateType: typeof predicate }
     )

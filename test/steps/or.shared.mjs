@@ -1,7 +1,8 @@
+import { OR_INVALID_PREDICATE } from '@liquid-bricks/lib-diagnostics/codes'
 import assert from 'node:assert/strict'
 import test, { suite } from 'node:test'
 
-import { Errors } from '../../steps/types.js'
+
 
 export function runOrSuite({ label, setup }) {
   suite(`or() traversal integration [${label}]`, () => {
@@ -54,7 +55,7 @@ export function runOrSuite({ label, setup }) {
       const graph = await setup(t)
       await assert.rejects(
         graph.g.V().or(null),
-        (err) => err?.code === Errors.OR_INVALID_PREDICATE
+        (err) => err?.code === OR_INVALID_PREDICATE
       )
     })
   })

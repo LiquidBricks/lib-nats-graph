@@ -1,10 +1,10 @@
+import { LIMIT_INVALID } from '@liquid-bricks/lib-diagnostics/codes'
 import {
   operationName,
   operationNameKey,
   operationResultType,
   operationResultTypeKey,
   operationStreamWrapperKey,
-  Errors,
 } from '../types.js'
 
 const createLimitStep = (resultType) => ({
@@ -15,7 +15,7 @@ const createLimitStep = (resultType) => ({
     const [n] = args
     diagnostics?.require(
       Number.isInteger(n) && n >= 0,
-      Errors.LIMIT_INVALID,
+      LIMIT_INVALID,
       'limit(n) requires a non-negative integer.',
       { n }
     )

@@ -1,29 +1,23 @@
 import createNatsContext from "@liquid-bricks/lib-nats-context";
-
-// Centralized error codes for this provider
-export const KVProviderErrors = {
-  CONFIG_REQUIRED: 'E_KV_PROVIDER_CONFIG_REQUIRED',
-  SERVERS_REQUIRED: 'E_KV_PROVIDER_SERVERS_REQUIRED',
-  BUCKET_REQUIRED: 'E_KV_PROVIDER_BUCKET_REQUIRED',
-}
+import { E_KV_PROVIDER_BUCKET_REQUIRED, E_KV_PROVIDER_CONFIG_REQUIRED, E_KV_PROVIDER_SERVERS_REQUIRED } from '@liquid-bricks/lib-diagnostics/codes';
 
 export async function kvProvider({ config = {}, ctx: {
   diagnostics
 } } = {}) {
   diagnostics.require(
     config && typeof config === 'object',
-    KVProviderErrors.CONFIG_REQUIRED,
+    E_KV_PROVIDER_CONFIG_REQUIRED,
     'Invalid config: expected an object'
   );
   const { servers, bucket } = config
   diagnostics.require(
     servers,
-    KVProviderErrors.SERVERS_REQUIRED,
+    E_KV_PROVIDER_SERVERS_REQUIRED,
     'Missing config.servers: NATS server address required'
   );
   diagnostics.require(
     bucket,
-    KVProviderErrors.BUCKET_REQUIRED,
+    E_KV_PROVIDER_BUCKET_REQUIRED,
     'Missing config.bucket: KV bucket name required'
   );
 

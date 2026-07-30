@@ -1,7 +1,8 @@
+import { NOT_INVALID_PREDICATE } from '@liquid-bricks/lib-diagnostics/codes'
 import assert from 'node:assert/strict'
 import test, { suite } from 'node:test'
 
-import { Errors } from '../../steps/types.js'
+
 
 export function runNotSuite({ label, setup }) {
   suite(`not() traversal integration [${label}]`, () => {
@@ -80,7 +81,7 @@ export function runNotSuite({ label, setup }) {
       const graph = await setup(t)
       await assert.rejects(
         graph.g.V().not(null),
-        (err) => err?.code === Errors.NOT_INVALID_PREDICATE
+        (err) => err?.code === NOT_INVALID_PREDICATE
       )
     })
 

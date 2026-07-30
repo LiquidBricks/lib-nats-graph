@@ -1,4 +1,5 @@
-import { operationFactoryKey, operationNameKey, operationName, operationResultType, operationResultTypeKey, Errors } from '../types.js'
+import { KVSTORE_MISSING } from '@liquid-bricks/lib-diagnostics/codes'
+import { operationFactoryKey, operationNameKey, operationName, operationResultType, operationResultTypeKey } from '../types.js'
 
 const normalizeLabels = (args) => {
   if (!Array.isArray(args)) return []
@@ -29,7 +30,7 @@ export const bothE = {
     }
 
     const wanted = new Set(normalizeLabels(args))
-    diagnostics?.require(!!store, Errors.KVSTORE_MISSING, 'kvStore required in ctx for bothE() traversal', { where: 'shelved/bothE.factory' });
+    diagnostics?.require(!!store, KVSTORE_MISSING, 'kvStore required in ctx for bothE() traversal', { where: 'shelved/bothE.factory' });
     const edgeIds = new Set()
 
     const addFromIndex = async (key) => {

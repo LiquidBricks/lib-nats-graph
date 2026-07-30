@@ -1,4 +1,5 @@
-import { Errors } from '../steps/types.js'
+import { INVALID_OPERATION, KVSTORE_MISSING } from '@liquid-bricks/lib-diagnostics/codes'
+
 import { kvProviderFactory } from '../kvProvider/factory.js'
 import { diagnostics as createDiagnostics } from '@liquid-bricks/lib-diagnostics'
 import buildMeta from '../build-meta.js'
@@ -44,7 +45,7 @@ const graph = ({ getKVStore, diagnostics }) => ({
           if (prop === 'then') {
             return (onFulfilled) => onFulfilled(Array.fromAsync((async function* () {
               const { interface: kvStore } = await getKVStore()
-              diagnostics.require(!!kvStore, Errors.KVSTORE_MISSING, 'kvStore does not have an interface.', { where: 'graph.then' })
+              diagnostics.require(!!kvStore, KVSTORE_MISSING, 'kvStore does not have an interface.', { where: 'graph.then' })
               yield* operationChainExecutor({
                 operationsChain,
                 kvStore,
@@ -65,12 +66,12 @@ const graph = ({ getKVStore, diagnostics }) => ({
     const operationsChain = traversal?.[operationsChainSymbol]
     diagnostics.require(
       Array.isArray(operationsChain),
-      Errors.INVALID_OPERATION,
+      INVALID_OPERATION,
       'graph.run() requires a traversal produced from graph.g',
       { where: 'graph.run', traversal }
     )
     const { interface: kvStore } = await getKVStore()
-    diagnostics.require(!!kvStore, Errors.KVSTORE_MISSING, 'kvStore does not have an interface.', { where: 'graph.run' })
+    diagnostics.require(!!kvStore, KVSTORE_MISSING, 'kvStore does not have an interface.', { where: 'graph.run' })
     return Array.fromAsync(operationChainExecutor({
       operationsChain,
       kvStore,

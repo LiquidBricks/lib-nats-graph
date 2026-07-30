@@ -1,10 +1,10 @@
+import { AND_INVALID_PREDICATE } from '@liquid-bricks/lib-diagnostics/codes'
 import {
   operationName,
   operationNameKey,
   operationResultType,
   operationResultTypeKey,
   operationStreamWrapperKey,
-  Errors,
 } from '../types.js'
 import { evaluatePredicate } from './predicateUtils.js'
 
@@ -15,7 +15,7 @@ const createAndStep = ({ resultType, startProp }) => ({
     const { diagnostics } = ctx
     diagnostics?.require(
       predicates.length > 0 && predicates.every((predicate) => typeof predicate === 'function'),
-      Errors.AND_INVALID_PREDICATE,
+      AND_INVALID_PREDICATE,
       'and(...predicates) requires one or more predicate functions.',
       { predicatesLength: predicates.length, predicateTypes: predicates.map((p) => typeof p) }
     )

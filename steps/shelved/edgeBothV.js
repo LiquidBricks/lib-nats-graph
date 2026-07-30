@@ -1,5 +1,12 @@
+import { KVSTORE_MISSING } from '@liquid-bricks/lib-diagnostics/codes'
 import { VRef } from '../root/V.js'
-import { operationFactoryKey, operationNameKey, operationName, operationResultType, operationResultTypeKey, Errors } from '../types.js'
+import {
+  operationFactoryKey,
+  operationNameKey,
+  operationName,
+  operationResultType,
+  operationResultTypeKey,
+} from '../types.js'
 
 export const edgeBothV = {
   [operationNameKey]: operationName.bothV,
@@ -9,7 +16,7 @@ export const edgeBothV = {
     const edgeId = parent == null ? null : String(parent)
     if (!edgeId) return VRef(null)
 
-    diagnostics?.require(!!store, Errors.KVSTORE_MISSING, 'kvStore required in ctx for edgeBothV() traversal', { where: 'shelved/edgeBothV.factory' });
+    diagnostics?.require(!!store, KVSTORE_MISSING, 'kvStore required in ctx for edgeBothV() traversal', { where: 'shelved/edgeBothV.factory' });
     let incoming = null
     let outgoing = null
 

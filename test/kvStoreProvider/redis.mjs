@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict'
 import test, { suite } from 'node:test'
 import { ulid } from 'ulid'
-import { kvProvider, KVProviderErrors } from '../../kvProvider/redis/provider.js'
+import { E_KV_PROVIDER_URL_REQUIRED } from '@liquid-bricks/lib-diagnostics/codes'
+import { kvProvider } from '../../kvProvider/redis/provider.js'
 import { diagnostics } from '@liquid-bricks/lib-diagnostics'
 import { runGetSuite } from './get.shared.mjs'
 import { runPutSuite } from './put.shared.mjs'
@@ -29,7 +30,7 @@ suite('kvStoreProvider/redis config', () => {
   test('requires config.url', async () => {
     await assert.rejects(
       async () => kvProvider({ config: { keyPrefix: 'x' }, ctx: { diagnostics: diagnosticsFactory() } }),
-      (err) => err?.code === KVProviderErrors.URL_REQUIRED || /url/i.test(String(err?.message ?? ''))
+      (err) => err?.code === E_KV_PROVIDER_URL_REQUIRED || /url/i.test(String(err?.message ?? ''))
     )
   })
 

@@ -1,5 +1,13 @@
+import { VERTEX_LABEL_REQUIRED } from '@liquid-bricks/lib-diagnostics/codes'
 import { uniqueID } from '../../config.js'
-import { operationResultTypeKey, operationFactoryKey, operationResultType, operationNameKey, operationName, operationStreamWrapperKey, Errors } from '../types.js'
+import {
+  operationResultTypeKey,
+  operationFactoryKey,
+  operationResultType,
+  operationNameKey,
+  operationName,
+  operationStreamWrapperKey,
+} from '../types.js'
 import { graphKeyspace } from '../kv/graphKeyspace.js'
 
 export const addV = {
@@ -7,7 +15,7 @@ export const addV = {
   [operationResultTypeKey]: operationResultType.vertex,
   [operationStreamWrapperKey]({ ctx: { kvStore, diagnostics } = {}, args: [label] = [] } = {}) {
     return (_source) => (async function* () {
-      diagnostics?.require(typeof label === 'string' && label.length, Errors.VERTEX_LABEL_REQUIRED, 'type required', { label });
+      diagnostics?.require(typeof label === 'string' && label.length, VERTEX_LABEL_REQUIRED, 'type required', { label });
 
       const id = uniqueID();
       await Promise.all([
@@ -19,7 +27,7 @@ export const addV = {
     })()
   },
   [operationFactoryKey]({ ctx: { kvStore, diagnostics } = {}, args: [label] = [] } = {}) {
-    diagnostics?.require(typeof label === 'string' && label.length, Errors.VERTEX_LABEL_REQUIRED, 'type required', { label });
+    diagnostics?.require(typeof label === 'string' && label.length, VERTEX_LABEL_REQUIRED, 'type required', { label });
 
     async function* itr() {
       const id = uniqueID();

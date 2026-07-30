@@ -1,3 +1,4 @@
+import { AS_INVALID_LABEL } from '@liquid-bricks/lib-diagnostics/codes'
 import {
   operationName,
   operationNameKey,
@@ -6,13 +7,12 @@ import {
   operationStreamWrapperKey,
   operationUsesTraverserKey,
   operationAppendsToPathKey,
-  Errors
 } from '../types.js'
 
 const normalizeLabel = (label, idx, diagnostics) => {
   diagnostics?.require(
     typeof label === 'string' && label.length > 0,
-    Errors.AS_INVALID_LABEL,
+    AS_INVALID_LABEL,
     'as(label) requires non-empty string labels',
     { label, index: idx }
   )

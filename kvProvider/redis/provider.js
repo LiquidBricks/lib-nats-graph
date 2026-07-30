@@ -1,10 +1,5 @@
 import { createClient } from 'redis'
-
-export const KVProviderErrors = {
-  CONFIG_REQUIRED: 'E_KV_PROVIDER_CONFIG_REQUIRED',
-  URL_REQUIRED: 'E_KV_PROVIDER_URL_REQUIRED',
-  PREFIX_REQUIRED: 'E_KV_PROVIDER_PREFIX_REQUIRED',
-}
+import { E_KV_PROVIDER_CONFIG_REQUIRED, E_KV_PROVIDER_PREFIX_REQUIRED, E_KV_PROVIDER_URL_REQUIRED } from '@liquid-bricks/lib-diagnostics/codes'
 
 export async function kvProvider({ config = {}, ctx: { diagnostics } = {} } = {}) {
   const requireConfig = (condition, code, message) => {
@@ -17,7 +12,7 @@ export async function kvProvider({ config = {}, ctx: { diagnostics } = {} } = {}
 
   requireConfig(
     config && typeof config === 'object',
-    KVProviderErrors.CONFIG_REQUIRED,
+    E_KV_PROVIDER_CONFIG_REQUIRED,
     'Invalid config: expected an object'
   )
 
@@ -30,12 +25,12 @@ export async function kvProvider({ config = {}, ctx: { diagnostics } = {} } = {}
 
   requireConfig(
     !!url,
-    KVProviderErrors.URL_REQUIRED,
+    E_KV_PROVIDER_URL_REQUIRED,
     'Missing config.url: Redis connection string required'
   )
   requireConfig(
     keyPrefix && typeof keyPrefix === 'string',
-    KVProviderErrors.PREFIX_REQUIRED,
+    E_KV_PROVIDER_PREFIX_REQUIRED,
     'Missing config.keyPrefix: Prefix required to namespace keys'
   )
 

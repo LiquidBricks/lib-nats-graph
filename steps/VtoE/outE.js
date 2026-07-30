@@ -1,4 +1,5 @@
-import { operationFactoryKey, operationNameKey, operationName, operationResultType, operationResultTypeKey, Errors, operationStreamWrapperKey } from '../types.js'
+import { KVSTORE_MISSING } from '@liquid-bricks/lib-diagnostics/codes'
+import { operationFactoryKey, operationNameKey, operationName, operationResultType, operationResultTypeKey, operationStreamWrapperKey } from '../types.js'
 import { graphKeyspace } from '../kv/graphKeyspace.js'
 import { readChunkedSet } from '../kv/kvUtils.js'
 
@@ -57,7 +58,7 @@ export const outE = {
   [operationStreamWrapperKey]({ ctx = {}, args = [] } = {}) {
     const { kvStore: store, diagnostics } = ctx;
     const wanted = new Set(normalizeLabels(args))
-    diagnostics?.require(!!store, Errors.KVSTORE_MISSING, 'kvStore required in ctx for outE() traversal', { where: 'VtoE/outE.stream' });
+    diagnostics?.require(!!store, KVSTORE_MISSING, 'kvStore required in ctx for outE() traversal', { where: 'VtoE/outE.stream' });
 
     return (source) => (async function* () {
       const seen = new Set()

@@ -1,10 +1,11 @@
+import { PROPERTY_RESERVED_KEY, VERTEX_LABEL_REQUIRED } from '@liquid-bricks/lib-diagnostics/codes'
 import assert from 'node:assert'
 import test, { after, suite } from 'node:test'
 import { Graph } from '../graph/graph.js'
 import { NATS_IP_ADDRESS } from './util/config.js'
 import { ulid } from 'ulid'
 import { diagnostics as createDiagnostics } from '@liquid-bricks/lib-diagnostics'
-import { Errors } from '../steps/types.js'
+
 import buildMeta from '../build-meta.js'
 
 suite('Graph diagnostics configuration', () => {
@@ -13,7 +14,7 @@ suite('Graph diagnostics configuration', () => {
     t.after(async () => graph.close?.())
     await assert.rejects(
       graph.g.addV().count(),
-      (err) => err?.code === Errors.VERTEX_LABEL_REQUIRED && err?.name === 'DiagnosticError'
+      (err) => err?.code === VERTEX_LABEL_REQUIRED && err?.name === 'DiagnosticError'
     )
   })
 
@@ -30,10 +31,10 @@ suite('Graph diagnostics configuration', () => {
     t.after(async () => graph.close?.())
     await assert.rejects(
       graph.g.addV().count(),
-      (err) => err?.code === Errors.VERTEX_LABEL_REQUIRED
+      (err) => err?.code === VERTEX_LABEL_REQUIRED
     )
     assert.ok(
-      calls.some(([, code]) => code === Errors.VERTEX_LABEL_REQUIRED),
+      calls.some(([, code]) => code === VERTEX_LABEL_REQUIRED),
       'custom diagnostics instance should receive require calls'
     )
   })
@@ -48,7 +49,7 @@ suite('Graph diagnostics configuration', () => {
     await assert.rejects(
       graph.g.addV('person').property('id', 'secret'),
       (err) => {
-        assert.equal(err?.code, Errors.PROPERTY_RESERVED_KEY)
+        assert.equal(err?.code, PROPERTY_RESERVED_KEY)
         console.log(err.meta)
         const queryMeta = err?.meta?.[queryMetaKey]
         assert.ok(queryMeta, 'diagnostic error should include query metadata')

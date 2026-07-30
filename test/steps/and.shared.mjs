@@ -1,7 +1,8 @@
+import { AND_INVALID_PREDICATE } from '@liquid-bricks/lib-diagnostics/codes'
 import assert from 'node:assert/strict'
 import test, { suite } from 'node:test'
 
-import { Errors } from '../../steps/types.js'
+
 
 export function runAndSuite({ label, setup }) {
   suite(`and() traversal integration [${label}]`, () => {
@@ -56,7 +57,7 @@ export function runAndSuite({ label, setup }) {
       const graph = await setup(t)
       await assert.rejects(
         graph.g.V().and(null),
-        (err) => err?.code === Errors.AND_INVALID_PREDICATE
+        (err) => err?.code === AND_INVALID_PREDICATE
       )
     })
   })

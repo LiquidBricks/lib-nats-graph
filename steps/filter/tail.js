@@ -1,10 +1,10 @@
+import { TAIL_INVALID } from '@liquid-bricks/lib-diagnostics/codes'
 import {
   operationName,
   operationNameKey,
   operationResultType,
   operationResultTypeKey,
   operationStreamWrapperKey,
-  Errors,
 } from '../types.js'
 
 const createTailStep = (resultType) => ({
@@ -17,7 +17,7 @@ const createTailStep = (resultType) => ({
 
     diagnostics?.require(
       Number.isInteger(n) && n >= 0,
-      Errors.TAIL_INVALID,
+      TAIL_INVALID,
       'tail([n]) requires a non-negative integer.',
       { n: rawN }
     )

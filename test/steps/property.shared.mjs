@@ -1,7 +1,8 @@
+import { PROPERTY_INVALID_KEY, PROPERTY_INVALID_VALUE, PROPERTY_RESERVED_KEY } from '@liquid-bricks/lib-diagnostics/codes'
 import assert from 'node:assert/strict'
 import test, { suite } from 'node:test'
 
-import { Errors } from '../../steps/types.js'
+
 
 export function runPropertySuite({ label, setup }) {
   suite(`property() traversal integration [${label}]`, () => {
@@ -34,9 +35,9 @@ export function runPropertySuite({ label, setup }) {
       const graph = await setup(t)
       const [id] = await graph.g.addV('node')
 
-      await assert.rejects(graph.g.V(id).property('', 'x'), (err) => err?.code === Errors.PROPERTY_INVALID_KEY)
-      await assert.rejects(graph.g.V(id).property('id', 'x'), (err) => err?.code === Errors.PROPERTY_RESERVED_KEY)
-      await assert.rejects(graph.g.V(id).property('name', undefined), (err) => err?.code === Errors.PROPERTY_INVALID_VALUE)
+      await assert.rejects(graph.g.V(id).property('', 'x'), (err) => err?.code === PROPERTY_INVALID_KEY)
+      await assert.rejects(graph.g.V(id).property('id', 'x'), (err) => err?.code === PROPERTY_RESERVED_KEY)
+      await assert.rejects(graph.g.V(id).property('name', undefined), (err) => err?.code === PROPERTY_INVALID_VALUE)
     })
   })
 }

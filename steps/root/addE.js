@@ -1,5 +1,13 @@
+import { EDGE_INCOMING_MISSING, EDGE_INCOMING_REQUIRED, EDGE_LABEL_REQUIRED, EDGE_OUTGOING_MISSING, EDGE_OUTGOING_REQUIRED } from '@liquid-bricks/lib-diagnostics/codes'
 import { uniqueID } from '../../config.js'
-import { operationResultTypeKey, operationFactoryKey, operationResultType, operationNameKey, operationName, operationStreamWrapperKey, Errors } from '../types.js'
+import {
+  operationResultTypeKey,
+  operationFactoryKey,
+  operationResultType,
+  operationNameKey,
+  operationName,
+  operationStreamWrapperKey,
+} from '../types.js'
 import { graphKeyspace } from '../kv/graphKeyspace.js'
 import { keyExists, pushUniqueToJsonArray, appendToChunkedSet } from '../kv/kvUtils.js'
 
@@ -11,16 +19,16 @@ export const addE = {
     args: [label, incoming, outgoing] = []
   } = {}) {
     return (_source) => (async function* () {
-      diagnostics?.require(typeof label === 'string' && label.length, Errors.EDGE_LABEL_REQUIRED, 'type required', { label });
-      diagnostics?.require(typeof incoming === 'string' && incoming.length, Errors.EDGE_INCOMING_REQUIRED, 'incoming required', { incoming });
-      diagnostics?.require(typeof outgoing === 'string' && outgoing.length, Errors.EDGE_OUTGOING_REQUIRED, 'outgoing required', { outgoing });
+      diagnostics?.require(typeof label === 'string' && label.length, EDGE_LABEL_REQUIRED, 'type required', { label });
+      diagnostics?.require(typeof incoming === 'string' && incoming.length, EDGE_INCOMING_REQUIRED, 'incoming required', { incoming });
+      diagnostics?.require(typeof outgoing === 'string' && outgoing.length, EDGE_OUTGOING_REQUIRED, 'outgoing required', { outgoing });
 
       const [inExists, outExists] = await Promise.all([
         keyExists(kvStore, graphKeyspace.vertex.record(incoming)),
         keyExists(kvStore, graphKeyspace.vertex.record(outgoing)),
       ])
-      diagnostics?.require(inExists, Errors.EDGE_INCOMING_MISSING, `incoming vertex does not exist: ${incoming}`, { incoming });
-      diagnostics?.require(outExists, Errors.EDGE_OUTGOING_MISSING, `outgoing vertex does not exist: ${outgoing}`, { outgoing });
+      diagnostics?.require(inExists, EDGE_INCOMING_MISSING, `incoming vertex does not exist: ${incoming}`, { incoming });
+      diagnostics?.require(outExists, EDGE_OUTGOING_MISSING, `outgoing vertex does not exist: ${outgoing}`, { outgoing });
 
       const id = uniqueID();
       await Promise.all([
@@ -95,9 +103,9 @@ export const addE = {
     ctx: { kvStore, diagnostics } = {},
     args: [label, incoming, outgoing] } = {}
   ) {
-    diagnostics?.require(typeof label === 'string' && label.length, Errors.EDGE_LABEL_REQUIRED, 'type required', { label });
-    diagnostics?.require(typeof incoming === 'string' && incoming.length, Errors.EDGE_INCOMING_REQUIRED, 'incoming required', { incoming });
-    diagnostics?.require(typeof outgoing === 'string' && outgoing.length, Errors.EDGE_OUTGOING_REQUIRED, 'outgoing required', { outgoing });
+    diagnostics?.require(typeof label === 'string' && label.length, EDGE_LABEL_REQUIRED, 'type required', { label });
+    diagnostics?.require(typeof incoming === 'string' && incoming.length, EDGE_INCOMING_REQUIRED, 'incoming required', { incoming });
+    diagnostics?.require(typeof outgoing === 'string' && outgoing.length, EDGE_OUTGOING_REQUIRED, 'outgoing required', { outgoing });
 
     async function* itr() {
       // Ensure both endpoint vertices exist before creating the edge
@@ -105,8 +113,8 @@ export const addE = {
         keyExists(kvStore, graphKeyspace.vertex.record(incoming)),
         keyExists(kvStore, graphKeyspace.vertex.record(outgoing)),
       ])
-      diagnostics?.require(inExists, Errors.EDGE_INCOMING_MISSING, `incoming vertex does not exist: ${incoming}`, { incoming });
-      diagnostics?.require(outExists, Errors.EDGE_OUTGOING_MISSING, `outgoing vertex does not exist: ${outgoing}`, { outgoing });
+      diagnostics?.require(inExists, EDGE_INCOMING_MISSING, `incoming vertex does not exist: ${incoming}`, { incoming });
+      diagnostics?.require(outExists, EDGE_OUTGOING_MISSING, `outgoing vertex does not exist: ${outgoing}`, { outgoing });
 
       const id = uniqueID();
       await Promise.all([

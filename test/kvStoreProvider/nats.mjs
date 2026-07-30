@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict'
 import test, { suite, before } from 'node:test'
 import { NATS_IP_ADDRESS } from '../util/config.js'
-import { kvProvider, KVProviderErrors } from '../../kvProvider/nats/provider.js'
+import { E_KV_PROVIDER_BUCKET_REQUIRED, E_KV_PROVIDER_SERVERS_REQUIRED } from '@liquid-bricks/lib-diagnostics/codes'
+import { kvProvider } from '../../kvProvider/nats/provider.js'
 import { ulid } from 'ulid'
 import { runKeysSharedSuite } from './keys.shared.mjs'
 import { startDummyServer } from '../util/dummyServer.js'
@@ -36,12 +37,12 @@ suite('kvStoreProvider/nats', () => {
       await assert.rejects(async () => kvProvider({
         config: {},
         ctx: { diagnostics: diagnostics() }
-      }), (err) => err?.code === KVProviderErrors.SERVERS_REQUIRED && err?.type === 'Precondition')
+      }), (err) => err?.code === E_KV_PROVIDER_SERVERS_REQUIRED && err?.type === 'Precondition')
 
       await assert.rejects(async () => kvProvider({
         config: { servers: `${address}:${port}` },
         ctx: { diagnostics: diagnostics() }
-      }), (err) => err?.code === KVProviderErrors.BUCKET_REQUIRED && err?.type === 'Precondition')
+      }), (err) => err?.code === E_KV_PROVIDER_BUCKET_REQUIRED && err?.type === 'Precondition')
     })
     test(`should recieve ConnectionError from misconfiguration`, async (t) => {
       const { address, port, close } = await startDummyServer(socket => socket.on('data', () => { }));

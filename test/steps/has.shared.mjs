@@ -1,7 +1,8 @@
+import { HAS_INVALID_KEY, HAS_INVALID_VALUE } from '@liquid-bricks/lib-diagnostics/codes'
 import assert from 'node:assert/strict'
 import test, { suite } from 'node:test'
 
-import { Errors } from '../../steps/types.js'
+
 
 export function runHasSuite({ label, setup }) {
   suite(`has() traversal integration [${label}]`, () => {
@@ -66,11 +67,11 @@ export function runHasSuite({ label, setup }) {
 
       let keyErr
       try { await source.has('', 'v') } catch (err) { keyErr = err }
-      assert.equal(keyErr?.code, Errors.HAS_INVALID_KEY)
+      assert.equal(keyErr?.code, HAS_INVALID_KEY)
 
       let valueErr
       try { await graph.g.V([id]).has('label', {}) } catch (err) { valueErr = err }
-      assert.equal(valueErr?.code, Errors.HAS_INVALID_VALUE)
+      assert.equal(valueErr?.code, HAS_INVALID_VALUE)
     })
   })
 }

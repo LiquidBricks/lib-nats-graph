@@ -1,10 +1,10 @@
+import { OR_INVALID_PREDICATE } from '@liquid-bricks/lib-diagnostics/codes'
 import {
   operationName,
   operationNameKey,
   operationResultType,
   operationResultTypeKey,
   operationStreamWrapperKey,
-  Errors,
 } from '../types.js'
 import { evaluatePredicate } from './predicateUtils.js'
 
@@ -15,7 +15,7 @@ const createOrStep = ({ resultType, startProp }) => ({
     const { diagnostics } = ctx
     diagnostics?.require(
       predicates.length > 0 && predicates.every((predicate) => typeof predicate === 'function'),
-      Errors.OR_INVALID_PREDICATE,
+      OR_INVALID_PREDICATE,
       'or(...predicates) requires one or more predicate functions.',
       { predicatesLength: predicates.length, predicateTypes: predicates.map((p) => typeof p) }
     )

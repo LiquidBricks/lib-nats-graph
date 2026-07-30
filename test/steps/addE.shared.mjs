@@ -1,7 +1,8 @@
+import { EDGE_INCOMING_MISSING, EDGE_INCOMING_REQUIRED, EDGE_LABEL_REQUIRED, EDGE_OUTGOING_MISSING, EDGE_OUTGOING_REQUIRED } from '@liquid-bricks/lib-diagnostics/codes'
 import assert from 'node:assert/strict'
 import test, { suite } from 'node:test'
 
-import { Errors } from '../../steps/types.js'
+
 
 export function runAddESuite({ label, setup }) {
   suite(`addE() traversal integration [${label}]`, () => {
@@ -59,22 +60,22 @@ export function runAddESuite({ label, setup }) {
       const [a] = await graph.g.addV('A')
       const [b] = await graph.g.addV('B')
 
-      await assert.rejects(graph.g.addE(), (err) => err?.code === Errors.EDGE_LABEL_REQUIRED)
-      await assert.rejects(graph.g.addE('t'), (err) => err?.code === Errors.EDGE_INCOMING_REQUIRED)
-      await assert.rejects(graph.g.addE('t', a), (err) => err?.code === Errors.EDGE_OUTGOING_REQUIRED)
+      await assert.rejects(graph.g.addE(), (err) => err?.code === EDGE_LABEL_REQUIRED)
+      await assert.rejects(graph.g.addE('t'), (err) => err?.code === EDGE_INCOMING_REQUIRED)
+      await assert.rejects(graph.g.addE('t', a), (err) => err?.code === EDGE_OUTGOING_REQUIRED)
 
       for (const bad of [null, undefined, {}, 123, '']) {
-        await assert.rejects(graph.g.addE(bad, a, b), (err) => err?.code === Errors.EDGE_LABEL_REQUIRED)
-        await assert.rejects(graph.g.addE('t', bad, b), (err) => err?.code === Errors.EDGE_INCOMING_REQUIRED)
-        await assert.rejects(graph.g.addE('t', a, bad), (err) => err?.code === Errors.EDGE_OUTGOING_REQUIRED)
+        await assert.rejects(graph.g.addE(bad, a, b), (err) => err?.code === EDGE_LABEL_REQUIRED)
+        await assert.rejects(graph.g.addE('t', bad, b), (err) => err?.code === EDGE_INCOMING_REQUIRED)
+        await assert.rejects(graph.g.addE('t', a, bad), (err) => err?.code === EDGE_OUTGOING_REQUIRED)
       }
     })
 
     test('rejects non-existent endpoints with specific errors', async (t) => {
       const graph = await setup(t)
       const [present] = await graph.g.addV('present')
-      await assert.rejects(graph.g.addE('t', 'missing-in', 'missing-out'), (err) => err?.code === Errors.EDGE_INCOMING_MISSING)
-      await assert.rejects(graph.g.addE('t', present, 'missing-out'), (err) => err?.code === Errors.EDGE_OUTGOING_MISSING)
+      await assert.rejects(graph.g.addE('t', 'missing-in', 'missing-out'), (err) => err?.code === EDGE_INCOMING_MISSING)
+      await assert.rejects(graph.g.addE('t', present, 'missing-out'), (err) => err?.code === EDGE_OUTGOING_MISSING)
     })
   })
 }

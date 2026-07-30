@@ -5,7 +5,6 @@ import {
   operationNameKey,
   operationName,
   operationStreamWrapperKey,
-  Errors
 } from '../types.js'
 import { graphKeyspace } from '../kv/graphKeyspace.js'
 import { readChunkedSet } from '../kv/kvUtils.js'

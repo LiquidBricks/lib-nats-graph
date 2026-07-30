@@ -1,5 +1,5 @@
 import { VRef } from '../root/V.js'
-import { operationFactoryKey, operationNameKey, operationName, operationResultType, operationResultTypeKey, Errors } from '../types.js'
+import { operationFactoryKey, operationNameKey, operationName, operationResultType, operationResultTypeKey } from '../types.js'
 import { graphKeyspace } from '../kv/graphKeyspace.js'
 import { getStringOrNull } from '../kv/kvUtils.js'
 

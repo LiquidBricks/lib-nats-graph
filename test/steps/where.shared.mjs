@@ -1,7 +1,8 @@
+import { WHERE_INVALID_PREDICATE } from '@liquid-bricks/lib-diagnostics/codes'
 import assert from 'node:assert/strict'
 import test, { suite } from 'node:test'
 
-import { Errors } from '../../steps/types.js'
+
 
 export function runWhereSuite({ label, setup }) {
   suite(`where() traversal integration [${label}]`, () => {
@@ -73,7 +74,7 @@ export function runWhereSuite({ label, setup }) {
       const graph = await setup(t)
       await assert.rejects(
         graph.g.V().where(null),
-        (err) => err?.code === Errors.WHERE_INVALID_PREDICATE
+        (err) => err?.code === WHERE_INVALID_PREDICATE
       )
     })
   })

@@ -1,5 +1,13 @@
+import { HAS_INVALID_KEY, HAS_INVALID_VALUE } from '@liquid-bricks/lib-diagnostics/codes'
 import { vertexLabel, edgeLabel } from '../terminal/label.js'
-import { operationResultTypeKey, operationFactoryKey, operationResultType, operationNameKey, operationName, operationStreamWrapperKey, Errors } from '../types.js'
+import {
+  operationResultTypeKey,
+  operationFactoryKey,
+  operationResultType,
+  operationNameKey,
+  operationName,
+  operationStreamWrapperKey,
+} from '../types.js'
 import { graphKeyspace } from '../kv/graphKeyspace.js'
 
 
@@ -8,9 +16,9 @@ export const vertexHas = {
   [operationResultTypeKey]: operationResultType.vertex,
   [operationStreamWrapperKey]({ ctx: { kvStore, diagnostics } = {}, args: [key, expected] } = {}) {
     return (source) => (async function* () {
-      diagnostics?.require(typeof key === 'string' && key.length > 0, Errors.HAS_INVALID_KEY, 'has(key, value) requires string, non-empty key', { key });
+      diagnostics?.require(typeof key === 'string' && key.length > 0, HAS_INVALID_KEY, 'has(key, value) requires string, non-empty key', { key });
       const t = typeof expected;
-      diagnostics?.require(t === 'string' || t === 'number' || t === 'boolean', Errors.HAS_INVALID_VALUE, 'has(key, value) requires scalar value (string|number|boolean)', { expected, type: t });
+      diagnostics?.require(t === 'string' || t === 'number' || t === 'boolean', HAS_INVALID_VALUE, 'has(key, value) requires scalar value (string|number|boolean)', { expected, type: t });
 
       for await (const vertexId of source) {
         let getValue;
@@ -30,10 +38,10 @@ export const vertexHas = {
   },
   [operationFactoryKey]({ parent: vertexId, ctx: { kvStore, diagnostics } = {}, args: [key, expected] } = {}) {
     // Validate inputs early so invalid usage surfaces clearly
-    diagnostics?.require(typeof key === 'string', Errors.HAS_INVALID_KEY, 'has(key, value) requires string key', { key });
-    diagnostics?.require(key.length > 0, Errors.HAS_INVALID_KEY, 'has(key, value) requires non-empty key', { key });
+    diagnostics?.require(typeof key === 'string', HAS_INVALID_KEY, 'has(key, value) requires string key', { key });
+    diagnostics?.require(key.length > 0, HAS_INVALID_KEY, 'has(key, value) requires non-empty key', { key });
     const expectedType = typeof expected;
-    diagnostics?.require(expectedType === 'string' || expectedType === 'number' || expectedType === 'boolean', Errors.HAS_INVALID_VALUE, 'has(key, value) requires scalar value (string|number|boolean)', { expected, type: expectedType });
+    diagnostics?.require(expectedType === 'string' || expectedType === 'number' || expectedType === 'boolean', HAS_INVALID_VALUE, 'has(key, value) requires scalar value (string|number|boolean)', { expected, type: expectedType });
     async function* iterator() {
       let getValue;
       if (key === 'label') {
@@ -63,9 +71,9 @@ export const edgeHas = {
   [operationStreamWrapperKey]({ ctx: { kvStore, diagnostics } = {}, args = [] } = {}) {
     return (source) => (async function* () {
       const [key, expected] = args;
-      diagnostics?.require(typeof key === 'string' && key.length > 0, Errors.HAS_INVALID_KEY, 'has(key, value) requires string, non-empty key', { key });
+      diagnostics?.require(typeof key === 'string' && key.length > 0, HAS_INVALID_KEY, 'has(key, value) requires string, non-empty key', { key });
       const t = typeof expected;
-      diagnostics?.require(t === 'string' || t === 'number' || t === 'boolean', Errors.HAS_INVALID_VALUE, 'has(key, value) requires scalar value (string|number|boolean)', { expected, type: t });
+      diagnostics?.require(t === 'string' || t === 'number' || t === 'boolean', HAS_INVALID_VALUE, 'has(key, value) requires scalar value (string|number|boolean)', { expected, type: t });
 
       for await (const edgeId of source) {
         let getValue;
@@ -85,10 +93,10 @@ export const edgeHas = {
   },
   [operationFactoryKey]({ parent: edgeId, ctx: { kvStore, diagnostics } = {}, args: [key, expected] } = {}) {
     // Validate inputs early so invalid usage surfaces clearly
-    diagnostics?.require(typeof key === 'string', Errors.HAS_INVALID_KEY, 'has(key, value) requires string key', { key });
-    diagnostics?.require(key.length > 0, Errors.HAS_INVALID_KEY, 'has(key, value) requires non-empty key', { key });
+    diagnostics?.require(typeof key === 'string', HAS_INVALID_KEY, 'has(key, value) requires string key', { key });
+    diagnostics?.require(key.length > 0, HAS_INVALID_KEY, 'has(key, value) requires non-empty key', { key });
     const expectedType = typeof expected;
-    diagnostics?.require(expectedType === 'string' || expectedType === 'number' || expectedType === 'boolean', Errors.HAS_INVALID_VALUE, 'has(key, value) requires scalar value (string|number|boolean)', { expected, type: expectedType });
+    diagnostics?.require(expectedType === 'string' || expectedType === 'number' || expectedType === 'boolean', HAS_INVALID_VALUE, 'has(key, value) requires scalar value (string|number|boolean)', { expected, type: expectedType });
     async function* iterator() {
       let getValue;
       if (key === 'label') {

@@ -1,10 +1,10 @@
+import { FILTER_INVALID_PREDICATE } from '@liquid-bricks/lib-diagnostics/codes'
 import {
   operationName,
   operationNameKey,
   operationResultType,
   operationResultTypeKey,
   operationStreamWrapperKey,
-  Errors,
 } from '../types.js'
 import { evaluatePredicate } from './predicateUtils.js'
 
@@ -16,7 +16,7 @@ const createFilterStep = ({ resultType, startProp }) => ({
     const [predicate] = args
     diagnostics?.require(
       typeof predicate === 'function',
-      Errors.FILTER_INVALID_PREDICATE,
+      FILTER_INVALID_PREDICATE,
       'filter(predicate) requires a predicate function.',
       { predicateType: typeof predicate }
     )

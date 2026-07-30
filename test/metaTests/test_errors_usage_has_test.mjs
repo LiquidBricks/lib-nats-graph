@@ -40,7 +40,7 @@ async function collectExistingTestNames(dir) {
   return out
 }
 
-test.skip('per-step: every Errors.<CODE> used in a step has a matching assertion in its test file', async () => {
+test.skip('per-step: every diagnostic code used in a step has a matching assertion in its test file', async () => {
   const stepFiles = await collectStepFiles(stepsRoot)
   const existingTestNames = await collectExistingTestNames(testsRoot)
 
@@ -50,10 +50,15 @@ test.skip('per-step: every Errors.<CODE> used in a step has a matching assertion
     const src = await fs.readFile(stepFile, 'utf8')
     const stepName = path.basename(stepFile, '.js')
 
-    // Extract unique error codes referenced as Errors.SOMETHING
+    // Extract unique codes statically imported from the central diagnostics catalog.
     const codes = new Set()
-    const re = /\bErrors\.([A-Z_][A-Z0-9_]*)\b/g
-    for (const m of src.matchAll(re)) codes.add(m[1])
+    const re = /import\s*\{([^}]+)\}\s*from\s*['"]@liquid-bricks\/lib-diagnostics\/codes['"]/g
+    for (const match of src.matchAll(re)) {
+      for (const imported of match[1].split(',')) {
+        const code = imported.trim().split(/\s+as\s+/)[0]
+        if (/^[A-Z][A-Z0-9_]*$/.test(code)) codes.add(code)
+      }
+    }
 
     if (codes.size === 0) continue
 
@@ -65,11 +70,11 @@ test.skip('per-step: every Errors.<CODE> used in a step has a matching assertion
 
     const testFile = path.join(testsRoot, `${stepName}.mjs`)
     const testSrc = await fs.readFile(testFile, 'utf8').catch(() => '')
-    const missingCodes = [...codes].filter(code => !testSrc.includes(`Errors.${code}`))
+    const missingCodes = [...codes].filter(code => !new RegExp(`\\b${code}\\b`).test(testSrc))
     if (missingCodes.length > 0) {
       missingByStep.push(`${stepName} -> missing error coverage: ${missingCodes.join(', ')}`)
     }
   }
 
-  assert.deepEqual(missingByStep, [], `Uncovered Errors.<CODE> usages:\n${missingByStep.join('\n')}`)
+  assert.deepEqual(missingByStep, [], `Uncovered diagnostic code usages:\n${missingByStep.join('\n')}`)
 })
