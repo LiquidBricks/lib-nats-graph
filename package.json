@@ -17,8 +17,8 @@
     "prepublishOnly": "node scripts/embed-build-meta.js"
   },
   "dependencies": {
-    "@liquid-bricks/lib-nats-context": "github:LiquidBricks/lib-nats-context#756ba42db21d10d311892cd21aa7b56243f6c2c0",
-    "@liquid-bricks/lib-diagnostics": "github:LiquidBricks/lib-diagnostics#c55d79973df6a7d7255a0cb521aa8a3dc5182199",
+    "@liquid-bricks/lib-nats-context": "file:../lib-nats-context",
+    "@liquid-bricks/lib-diagnostics": "file:../lib-diagnostics",
     "@nats-io/jetstream": "^3.0.2",
     "@nats-io/kv": "^3.0.2",
     "@nats-io/transport-node": "^3.0.2",
